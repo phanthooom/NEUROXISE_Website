@@ -45,6 +45,7 @@ export default function Navbar() {
     { label: t.nav.howItWorks, href: '#how-it-works' },
     { label: t.nav.exercises,  href: '#exercises'    },
     { label: t.nav.stats,      href: '#stats'        },
+    { label: t.nav.pricing,    href: '#pricing'      },
   ]
 
   const currentLang = LANGS.find(l => l.code === lang)
