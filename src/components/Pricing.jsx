@@ -1,4 +1,5 @@
 import { useLanguage } from '../i18n/LanguageContext'
+import { mkC } from '../theme'
 
 function CheckIcon() {
   return (
@@ -10,27 +11,24 @@ function CheckIcon() {
 }
 
 export default function Pricing() {
-  const { t } = useLanguage()
+  const { t, isDark } = useLanguage()
   const p = t.pricing
+  const c = mkC(isDark)
 
   return (
-    <section id="pricing" style={{ padding: '96px 0', background: '#fff' }}>
+    <section id="pricing" style={{ padding: '96px 0', background: c.pageBg2 }}>
       <div className="container">
 
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: 64 }}>
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: 8,
-            background: '#EEF0FF', borderRadius: 999, padding: '6px 14px', marginBottom: 16,
-          }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: c.badge, borderRadius: 999, padding: '6px 14px', marginBottom: 16 }}>
             <span style={{ fontSize: 13, fontWeight: 600, color: '#3D52F5' }}>{p.badge}</span>
           </div>
           <h2 className="section-title">
             {p.title1}{' '}
-            <span style={{
-              background: 'linear-gradient(135deg, #3D52F5, #9DA8F5)',
-              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-            }}>{p.title2}</span>
+            <span style={{ background: 'linear-gradient(135deg, #3D52F5, #9DA8F5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
+              {p.title2}
+            </span>
           </h2>
           <p className="section-subtitle">{p.subtitle}</p>
         </div>
@@ -40,11 +38,9 @@ export default function Pricing() {
           {p.plans.map((plan, i) => {
             const isPro = plan.popular
             return (
-              <div
-                key={i}
-                className={`pricing-card${isPro ? ' pricing-card-pro' : ''}`}
-              >
-                {/* Popular badge */}
+              <div key={i} className={`pricing-card${isPro ? ' pricing-card-pro' : ''}`}
+                style={{ background: isPro ? undefined : c.cardBg, borderColor: isPro ? '#3D52F5' : c.border }}>
+
                 {isPro && (
                   <div style={{
                     position: 'absolute', top: -14, left: '50%', transform: 'translateX(-50%)',
@@ -56,52 +52,42 @@ export default function Pricing() {
                   }}>{p.popular}</div>
                 )}
 
-                {/* Plan name */}
                 <div style={{ marginBottom: 20 }}>
                   <div style={{
                     fontSize: 13, fontWeight: 700, letterSpacing: '0.5px',
-                    color: isPro ? '#3D52F5' : '#6B7080',
+                    color: isPro ? '#3D52F5' : c.text2,
                     textTransform: 'uppercase', marginBottom: 12,
                   }}>{plan.name}</div>
 
-                  {/* Price */}
                   <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 8 }}>
                     <span style={{
                       fontSize: plan.price.startsWith('$') ? 52 : 40,
-                      fontWeight: 800, color: '#1A1D2E', letterSpacing: '-1.5px', lineHeight: 1,
+                      fontWeight: 800, color: c.text, letterSpacing: '-1.5px', lineHeight: 1,
                     }}>{plan.price}</span>
-                    <span style={{ fontSize: 14, color: '#6B7080', fontWeight: 500 }}>{plan.per}</span>
+                    <span style={{ fontSize: 14, color: c.text2, fontWeight: 500 }}>{plan.per}</span>
                   </div>
-
-                  <p style={{ fontSize: 14, color: '#6B7080', lineHeight: 1.6 }}>{plan.desc}</p>
+                  <p style={{ fontSize: 14, color: c.text2, lineHeight: 1.6 }}>{plan.desc}</p>
                 </div>
 
-                {/* Divider */}
-                <div style={{ height: 1, background: isPro ? 'rgba(61,82,245,0.15)' : '#F0F1F6', margin: '20px 0' }} />
+                <div style={{ height: 1, background: isPro ? 'rgba(61,82,245,0.15)' : c.border, margin: '20px 0' }} />
 
-                {/* Features */}
                 <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 12, flex: 1 }}>
                   {plan.features.map((feat, j) => (
                     <li key={j} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                       <div style={{
                         width: 22, height: 22, borderRadius: 6, flexShrink: 0,
-                        background: isPro ? '#EEF0FF' : '#F5F6FA',
+                        background: isPro ? '#EEF0FF' : c.cardBg2,
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                         color: isPro ? '#3D52F5' : '#34C48C',
                       }}>
                         <CheckIcon />
                       </div>
-                      <span style={{ fontSize: 14, color: '#1A1D2E', fontWeight: 500 }}>{feat}</span>
+                      <span style={{ fontSize: 14, color: c.text, fontWeight: 500 }}>{feat}</span>
                     </li>
                   ))}
                 </ul>
 
-                {/* CTA */}
-                <a
-                  href="#download"
-                  className={isPro ? 'pricing-btn-primary' : 'pricing-btn-outline'}
-                  style={{ marginTop: 28 }}
-                >
+                <a href="#download" className={isPro ? 'pricing-btn-primary' : 'pricing-btn-outline'} style={{ marginTop: 28 }}>
                   {plan.cta}
                   {isPro && (
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -118,66 +104,38 @@ export default function Pricing() {
 
       <style>{`
         .pricing-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 24px;
-          align-items: start;
+          display: grid; grid-template-columns: repeat(3, 1fr);
+          gap: 24px; align-items: start;
         }
-
         .pricing-card {
-          background: #fff;
-          border: 1.5px solid #E8E9F0;
-          border-radius: 24px;
-          padding: 36px 32px;
-          position: relative;
-          display: flex;
-          flex-direction: column;
+          border: 1.5px solid; border-radius: 24px; padding: 36px 32px;
+          position: relative; display: flex; flex-direction: column;
           transition: box-shadow 0.3s ease, transform 0.3s ease;
         }
-        .pricing-card:hover {
-          box-shadow: 0 16px 48px rgba(0,0,0,0.08);
-          transform: translateY(-4px);
-        }
-
+        .pricing-card:hover { box-shadow: 0 16px 48px rgba(0,0,0,0.10); transform: translateY(-4px); }
         .pricing-card-pro {
-          border-color: #3D52F5;
-          background: linear-gradient(160deg, #fff 0%, #F4F6FF 100%);
+          background: linear-gradient(160deg, #f4f6ff 0%, #eef0ff 100%);
           box-shadow: 0 8px 32px rgba(61,82,245,0.12);
           transform: translateY(-8px);
         }
-        .pricing-card-pro:hover {
-          box-shadow: 0 20px 56px rgba(61,82,245,0.2);
-          transform: translateY(-12px);
-        }
+        .pricing-card-pro:hover { box-shadow: 0 20px 56px rgba(61,82,245,0.2); transform: translateY(-12px); }
 
         .pricing-btn-primary {
           display: flex; align-items: center; justify-content: center; gap: 8px;
           background: linear-gradient(135deg, #3D52F5, #6A7BF7);
           color: #fff; font-size: 14px; font-weight: 700;
-          padding: 14px 24px; border-radius: 14px;
-          text-decoration: none; transition: all 0.25s;
-          box-shadow: 0 6px 20px rgba(61,82,245,0.35);
-          letter-spacing: 0.2px;
+          padding: 14px 24px; border-radius: 14px; text-decoration: none;
+          transition: all 0.25s; box-shadow: 0 6px 20px rgba(61,82,245,0.35);
         }
-        .pricing-btn-primary:hover {
-          background: linear-gradient(135deg, #2E3FD9, #5A6BF0);
-          box-shadow: 0 10px 28px rgba(61,82,245,0.45);
-          transform: translateY(-1px);
-        }
+        .pricing-btn-primary:hover { background: linear-gradient(135deg, #2E3FD9, #5A6BF0); box-shadow: 0 10px 28px rgba(61,82,245,0.45); transform: translateY(-1px); }
 
         .pricing-btn-outline {
           display: flex; align-items: center; justify-content: center;
-          background: transparent;
-          color: #1A1D2E; font-size: 14px; font-weight: 600;
-          padding: 14px 24px; border-radius: 14px;
-          border: 1.5px solid #E8E9F0;
-          text-decoration: none; transition: all 0.25s;
-          letter-spacing: 0.2px;
+          background: transparent; font-size: 14px; font-weight: 600;
+          padding: 14px 24px; border-radius: 14px; border: 1.5px solid #E8E9F0;
+          color: #1A1D2E; text-decoration: none; transition: all 0.25s;
         }
-        .pricing-btn-outline:hover {
-          border-color: #3D52F5; color: #3D52F5;
-          background: #EEF0FF;
-        }
+        .pricing-btn-outline:hover { border-color: #3D52F5; color: #3D52F5; background: #EEF0FF; }
 
         @media (max-width: 960px) {
           .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }

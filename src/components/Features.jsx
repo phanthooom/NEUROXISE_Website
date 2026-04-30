@@ -1,5 +1,6 @@
 import { useLanguage } from '../i18n/LanguageContext'
 import { TargetIcon, BarChartIcon, GamepadIcon, GlobeIcon, ShieldIcon, ActivityIcon } from './Icons'
+import { mkC } from '../theme'
 
 const FEATURE_META = [
   { Icon: TargetIcon,   color: '#3D52F5', bg: '#EEF0FF' },
@@ -11,14 +12,15 @@ const FEATURE_META = [
 ]
 
 export default function Features() {
-  const { t } = useLanguage()
+  const { t, isDark } = useLanguage()
   const f = t.features
+  const c = mkC(isDark)
 
   return (
-    <section id="features" style={{ padding: '96px 0', background: '#F5F6FA' }}>
+    <section id="features" style={{ padding: '96px 0', background: c.pageBg }}>
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: 60 }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#EEF0FF', borderRadius: 999, padding: '6px 14px', marginBottom: 16 }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: c.badge, borderRadius: 999, padding: '6px 14px', marginBottom: 16 }}>
             <span style={{ fontSize: 13, fontWeight: 600, color: '#3D52F5' }}>{f.badge}</span>
           </div>
           <h2 className="section-title">
@@ -34,13 +36,13 @@ export default function Features() {
             return (
               <div key={i} className="feature-card"
                 onMouseEnter={e => { e.currentTarget.style.transform = 'translateY(-4px)'; e.currentTarget.style.boxShadow = '0 16px 40px rgba(0,0,0,0.09)'; e.currentTarget.style.borderColor = color }}
-                onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.borderColor = '#E8E9F0' }}
+                onMouseLeave={e => { e.currentTarget.style.transform = 'translateY(0)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.borderColor = c.border }}
               >
                 <div style={{ width: 52, height: 52, background: bg, borderRadius: 14, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 18 }}>
                   <Icon size={24} color={color} strokeWidth={1.8} />
                 </div>
-                <h3 style={{ fontSize: 17, fontWeight: 700, color: '#1A1D2E', marginBottom: 8 }}>{item.title}</h3>
-                <p style={{ fontSize: 14, color: '#6B7080', lineHeight: 1.65 }}>{item.desc}</p>
+                <h3 style={{ fontSize: 17, fontWeight: 700, color: c.text, marginBottom: 8 }}>{item.title}</h3>
+                <p style={{ fontSize: 14, color: c.text2, lineHeight: 1.65 }}>{item.desc}</p>
               </div>
             )
           })}

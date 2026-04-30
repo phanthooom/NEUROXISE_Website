@@ -223,6 +223,21 @@ const translations = {
       ],
     },
 
+    // FAQ
+    faq: {
+      badge:  'FAQ',
+      title1: 'Часто задаваемые',
+      title2: 'вопросы',
+      items: [
+        { q: 'Бесплатен ли NEUROXISE?',                   a: 'Да, базовый план полностью бесплатен и не требует банковской карты. Вы получаете 5 тренировочных модулей и базовую аналитику. Pro-план ($19/мес) открывает все возможности без ограничений.' },
+        { q: 'На каких устройствах работает приложение?', a: 'NEUROXISE доступен на iOS и Android. Основные упражнения работают полностью офлайн — можно тренироваться в любом месте без интернета.' },
+        { q: 'Нужен ли постоянный доступ к интернету?',  a: 'Нет. Все ключевые упражнения работают офлайн. Интернет нужен только для синхронизации прогресса между устройствами и загрузки обновлений.' },
+        { q: 'Для кого предназначен NEUROXISE?',          a: 'Для всех: люди на речевой реабилитации, студенты, профессионалы, пожилые люди и все, кто хочет поддерживать или улучшать когнитивное здоровье.' },
+        { q: 'Сколько времени нужно тренироваться?',      a: 'Достаточно 10–15 минут в день для заметных результатов. Умные напоминания помогут выработать устойчивую привычку в подходящее для вас время.' },
+        { q: 'Мои данные в безопасности?',                a: 'Да. Данные хранятся на вашем устройстве. Для базового плана аккаунт не нужен. Мы никогда не продаём и не передаём ваши данные третьим лицам.' },
+      ],
+    },
+
     // Pricing
     pricing: {
       badge:    'Тарифы',
@@ -456,6 +471,20 @@ const translations = {
         { icon: '🌐', label: '3 languages',         sub: 'EN · RU · UZ'           },
       ],
     },
+    faq: {
+      badge:  'FAQ',
+      title1: 'Frequently Asked',
+      title2: 'Questions',
+      items: [
+        { q: 'Is NEUROXISE free?',                     a: 'Yes, the Starter plan is completely free with no credit card required. You get 5 training modules and basic analytics. The Pro plan at $19/month unlocks everything with no limits.' },
+        { q: 'What devices does it support?',          a: 'NEUROXISE is available on iOS and Android. Core exercises run fully offline — you can train anywhere without an internet connection.' },
+        { q: 'Do I need an internet connection?',      a: 'No. All key exercises work offline. Internet is only needed for syncing progress across devices and downloading content updates.' },
+        { q: 'Who is NEUROXISE designed for?',         a: 'Everyone — people in speech rehabilitation, students, professionals, older adults, and anyone who wants to maintain or sharpen their cognitive health.' },
+        { q: 'How long should I train each day?',      a: 'Just 10–15 minutes per day is enough to see meaningful results. Smart reminders help you build a lasting habit at the right time for you.' },
+        { q: 'Is my data private and safe?',           a: 'Absolutely. Data is stored on your device. The Starter plan requires no account. We never sell or share your personal data with third parties.' },
+      ],
+    },
+
     pricing: {
       badge:    'Pricing',
       title1:   'Invest in Your',
@@ -687,6 +716,20 @@ const translations = {
         { icon: '🌐', label: '3 til',             sub: 'UZ · RU · EN'             },
       ],
     },
+    faq: {
+      badge:  'FAQ',
+      title1: "Ko'p so'raladigan",
+      title2: 'savollar',
+      items: [
+        { q: 'NEUROXISE bepulmi?',                         a: "Ha, Starter rejasi to'liq bepul va kredit karta talab qilmaydi. 5 ta mashq moduli va asosiy analitika mavjud. Pro reja ($19/oy) barcha imkoniyatlarni cheksiz ochadi." },
+        { q: 'Qaysi qurilmalarda ishlaydi?',               a: "NEUROXISE iOS va Android'da mavjud. Asosiy mashqlar to'liq oflayn ishlaydi — istalgan joyda internet siz mashq qilishingiz mumkin." },
+        { q: 'Doimiy internet kerakmi?',                   a: "Yo'q. Barcha asosiy mashqlar oflayn ishlaydi. Internet faqat qurilmalar o'rtasida taraqqiyotni sinxronlash va yangilanishlarni yuklab olish uchun kerak." },
+        { q: 'NEUROXISE kim uchun mo\'ljallangan?',        a: "Hamma uchun — nutq reabilitatsiyasidagi odamlar, talabalar, mutaxassislar, keksalar va kognitiv salomatligini saqlash yoki yaxshilamoqchi bo'lganlar." },
+        { q: 'Har kuni qancha vaqt mashq qilish kerak?',  a: "Sezilarli natijalarga erishish uchun kuniga 10–15 daqiqa yetarli. Aqlli eslatmalar qulay vaqtda barqaror odatni shakllantirishga yordam beradi." },
+        { q: "Ma'lumotlarim xavfsizmi?",                   a: "Ha. Ma'lumotlar qurilmangizda saqlanadi. Starter rejasi uchun hisob kerak emas. Biz shaxsiy ma'lumotlaringizni hech qachon uchinchi shaxslarga sotmaymiz yoki bermaymiz." },
+      ],
+    },
+
     pricing: {
       badge:    'Narxlar',
       title1:   'Aqlga',

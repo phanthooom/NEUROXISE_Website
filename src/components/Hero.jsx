@@ -1,5 +1,6 @@
 import { useLanguage } from '../i18n/LanguageContext'
 import { FlameIcon, CheckCircleIcon, CrosshairIcon, BrainIcon, MicIcon, EyeIcon } from './Icons'
+import { mkC } from '../theme'
 
 function PhoneMockup({ h }) {
   const exIcons = [
@@ -28,14 +29,12 @@ function PhoneMockup({ h }) {
         animation: 'float 4s ease-in-out infinite',
         overflow: 'hidden', maxWidth: 280, margin: '0 auto', background: '#F5F6FA',
       }}>
-        {/* Header */}
         <div style={{ background: 'linear-gradient(135deg, #3D52F5 0%, #6A7BF7 100%)', padding: '24px 20px 20px', color: '#fff' }}>
           <div style={{ fontSize: 11, opacity: 0.65, fontWeight: 500 }}>{h.greeting}</div>
           <div style={{ fontSize: 18, fontWeight: 700, marginTop: 2 }}>{h.hello}</div>
           <div style={{ fontSize: 11, color: 'rgba(157,168,245,0.9)', marginTop: 2 }}>{h.goal}</div>
         </div>
 
-        {/* Stats row */}
         <div style={{ display: 'flex', gap: 8, padding: '14px 14px 0' }}>
           {[
             { v: '7',   l: h.dayStreak, c: '#F5A623', Icon: FlameIcon       },
@@ -52,7 +51,6 @@ function PhoneMockup({ h }) {
           ))}
         </div>
 
-        {/* Today's plan */}
         <div style={{ padding: '14px 14px 8px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <span style={{ fontSize: 12, fontWeight: 700, color: '#1A1D2E' }}>{h.todaysPlan}</span>
           <span style={{ fontSize: 10, fontWeight: 600, color: '#3D52F5' }}>{h.seeAll}</span>
@@ -83,7 +81,6 @@ function PhoneMockup({ h }) {
         <div style={{ height: 20 }} />
       </div>
 
-      {/* Floating badges */}
       <div className="badge-right" style={{
         position: 'absolute', top: '8%', right: '-14%',
         background: '#fff', borderRadius: 14, padding: '10px 14px',
@@ -122,14 +119,17 @@ function PhoneMockup({ h }) {
 }
 
 export default function Hero() {
-  const { t } = useLanguage()
+  const { t, isDark } = useLanguage()
   const h = t.hero
+  const c = mkC(isDark)
 
   return (
     <section style={{
       minHeight: '100vh', display: 'flex', alignItems: 'center',
       paddingTop: 100, paddingBottom: 80,
-      background: 'linear-gradient(160deg, #fff 0%, #F0F2FF 50%, #F5F6FA 100%)',
+      background: isDark
+        ? 'linear-gradient(160deg, #0C0E1A 0%, #111428 50%, #0F1120 100%)'
+        : 'linear-gradient(160deg, #fff 0%, #F0F2FF 50%, #F5F6FA 100%)',
       position: 'relative', overflow: 'hidden',
     }}>
       <div style={{ position: 'absolute', top: -200, right: -200, width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle, rgba(61,82,245,0.08) 0%, transparent 70%)', pointerEvents: 'none' }} />
@@ -138,19 +138,19 @@ export default function Hero() {
       <div className="container">
         <div className="hero-grid">
           <div className="hero-text" style={{ animation: 'fadeInUp 0.8s ease both' }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#EEF0FF', borderRadius: 999, padding: '6px 14px', marginBottom: 24 }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: c.badge, borderRadius: 999, padding: '6px 14px', marginBottom: 24 }}>
               <BrainIcon size={15} color="#3D52F5" strokeWidth={1.8} />
               <span style={{ fontSize: 13, fontWeight: 600, color: '#3D52F5' }}>{h.badge}</span>
             </div>
 
-            <h1 className="hero-title">
+            <h1 className="hero-title" style={{ color: c.text }}>
               {h.title1}{' '}
               <span style={{ background: 'linear-gradient(135deg, #3D52F5, #9DA8F5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
                 {h.title2}
               </span>
             </h1>
 
-            <p style={{ fontSize: 17, color: '#6B7080', lineHeight: 1.75, marginBottom: 40, maxWidth: 480 }}>
+            <p style={{ fontSize: 17, color: c.text2, lineHeight: 1.75, marginBottom: 40, maxWidth: 480 }}>
               {h.desc}
             </p>
 
@@ -164,8 +164,8 @@ export default function Hero() {
 
             <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginTop: 40, flexWrap: 'wrap' }}>
               <div style={{ display: 'flex' }}>
-                {['#3D52F5','#9B59F5','#34C48C','#F5A623','#F55454'].map((c, i) => (
-                  <div key={i} style={{ width: 32, height: 32, borderRadius: '50%', background: c, border: '2px solid #fff', marginLeft: i > 0 ? -10 : 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, color: '#fff', fontWeight: 700 }}>
+                {['#3D52F5','#9B59F5','#34C48C','#F5A623','#F55454'].map((clr, i) => (
+                  <div key={i} style={{ width: 32, height: 32, borderRadius: '50%', background: clr, border: '2px solid #fff', marginLeft: i > 0 ? -10 : 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, color: '#fff', fontWeight: 700 }}>
                     {['A','B','C','D','E'][i]}
                   </div>
                 ))}
@@ -178,8 +178,8 @@ export default function Hero() {
                     </svg>
                   ))}
                 </div>
-                <div style={{ fontSize: 13, color: '#6B7080', marginTop: 2 }}>
-                  <strong style={{ color: '#1A1D2E' }}>10,000+</strong> {h.social}
+                <div style={{ fontSize: 13, color: c.text2, marginTop: 2 }}>
+                  <strong style={{ color: c.text }}>10,000+</strong> {h.social}
                 </div>
               </div>
             </div>
@@ -193,7 +193,7 @@ export default function Hero() {
 
       <style>{`
         .hero-grid  { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .hero-title { font-size: clamp(36px, 5vw, 64px); font-weight: 800; color: #1A1D2E; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 24px; }
+        .hero-title { font-size: clamp(36px, 5vw, 64px); font-weight: 800; line-height: 1.1; letter-spacing: -1.5px; margin-bottom: 24px; }
         .hero-btns  { display: flex; gap: 16px; flex-wrap: wrap; }
         .btn-primary {
           background: #3D52F5; color: #fff; font-size: 16px; font-weight: 600;

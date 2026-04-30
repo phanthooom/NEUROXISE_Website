@@ -1,5 +1,6 @@
 import { useLanguage } from '../i18n/LanguageContext'
 import { UserIcon, DumbbellIcon, TrendingUpIcon } from './Icons'
+import { mkC } from '../theme'
 
 const STEP_META = [
   { Icon: UserIcon,       color: '#3D52F5', bg: '#EEF0FF' },
@@ -8,14 +9,15 @@ const STEP_META = [
 ]
 
 export default function HowItWorks() {
-  const { t } = useLanguage()
+  const { t, isDark } = useLanguage()
   const hw = t.howItWorks
+  const c = mkC(isDark)
 
   return (
-    <section id="how-it-works" style={{ padding: '96px 0', background: '#fff' }}>
+    <section id="how-it-works" style={{ padding: '96px 0', background: c.pageBg2 }}>
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: 64 }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#EEF0FF', borderRadius: 999, padding: '6px 14px', marginBottom: 16 }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: c.badge, borderRadius: 999, padding: '6px 14px', marginBottom: 16 }}>
             <span style={{ fontSize: 13, fontWeight: 600, color: '#3D52F5' }}>{hw.badge}</span>
           </div>
           <h2 className="section-title">{hw.title}</h2>
@@ -34,7 +36,9 @@ export default function HowItWorks() {
                     background: bg, border: `2px solid ${color}30`,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     margin: '0 auto 24px',
-                    position: 'relative', boxShadow: `0 0 0 8px #fff, 0 0 0 9px ${color}20`, zIndex: 1,
+                    position: 'relative',
+                    boxShadow: `0 0 0 8px ${c.pageBg2}, 0 0 0 9px ${color}20`,
+                    zIndex: 1,
                   }}>
                     <Icon size={32} color={color} strokeWidth={1.6} />
                     <div style={{
@@ -46,8 +50,8 @@ export default function HowItWorks() {
                       boxShadow: `0 2px 8px ${color}60`,
                     }}>{i + 1}</div>
                   </div>
-                  <h3 style={{ fontSize: 19, fontWeight: 700, color: '#1A1D2E', marginBottom: 12 }}>{step.title}</h3>
-                  <p style={{ fontSize: 15, color: '#6B7080', lineHeight: 1.65, maxWidth: 260, margin: '0 auto' }}>{step.desc}</p>
+                  <h3 style={{ fontSize: 19, fontWeight: 700, color: c.text, marginBottom: 12 }}>{step.title}</h3>
+                  <p style={{ fontSize: 15, color: c.text2, lineHeight: 1.65, maxWidth: 260, margin: '0 auto' }}>{step.desc}</p>
                 </div>
               )
             })}

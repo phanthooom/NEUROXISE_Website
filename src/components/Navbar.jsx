@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import logo from '../logo/NEUROXISE_LOGO.jpg'
 import { useLanguage } from '../i18n/LanguageContext'
 import { LanguagesIcon } from './Icons'
+import { mkC } from '../theme'
 
 const LANGS = [
   { code: 'ru', label: 'RU', full: 'Русский'  },
@@ -9,18 +10,47 @@ const LANGS = [
   { code: 'uz', label: 'UZ', full: "O'zbek"   },
 ]
 
+function MoonIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+    </svg>
+  )
+}
+function SunIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/>
+      <line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/>
+      <line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+    </svg>
+  )
+}
+
 export default function Navbar() {
-  const { lang, setLang, t } = useLanguage()
-  const [scrolled, setScrolled]     = useState(false)
-  const [menuOpen, setMenuOpen]     = useState(false)
-  const [langOpen, setLangOpen]     = useState(false)
-  const [activeId, setActiveId]     = useState('')
+  const { lang, setLang, t, isDark, setIsDark } = useLanguage()
+  const c = mkC(isDark)
+  const [scrolled, setScrolled]   = useState(false)
+  const [menuOpen, setMenuOpen]   = useState(false)
+  const [langOpen, setLangOpen]   = useState(false)
+  const [activeId, setActiveId]   = useState('')
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  useEffect(() => {
+    if (!langOpen) return
+    const close = () => setLangOpen(false)
+    window.addEventListener('click', close)
+    return () => window.removeEventListener('click', close)
+  }, [langOpen])
 
   useEffect(() => {
     const sections = document.querySelectorAll('section[id]')
@@ -32,14 +62,6 @@ export default function Navbar() {
     return () => observer.disconnect()
   }, [])
 
-  // Close lang dropdown on outside click
-  useEffect(() => {
-    if (!langOpen) return
-    const close = () => setLangOpen(false)
-    window.addEventListener('click', close)
-    return () => window.removeEventListener('click', close)
-  }, [langOpen])
-
   const navLinks = [
     { label: t.nav.features,   href: '#features'    },
     { label: t.nav.howItWorks, href: '#how-it-works' },
@@ -49,16 +71,16 @@ export default function Navbar() {
   ]
 
   const currentLang = LANGS.find(l => l.code === lang)
+  const navBg  = scrolled ? (isDark ? 'rgba(12,14,26,0.97)' : 'rgba(255,255,255,0.97)') : 'transparent'
+  const navBdr = scrolled ? (isDark ? '#252840' : '#E8E9F0') : 'transparent'
 
   return (
     <nav style={{
-      position: 'fixed',
-      top: 0, left: 0, right: 0,
-      zIndex: 100,
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
       transition: 'all 0.3s ease',
-      background: scrolled ? 'rgba(255,255,255,0.97)' : 'transparent',
+      background: navBg,
       backdropFilter: scrolled ? 'blur(16px)' : 'none',
-      borderBottom: scrolled ? '1px solid #E8E9F0' : '1px solid transparent',
+      borderBottom: `1px solid ${navBdr}`,
       boxShadow: scrolled ? '0 2px 20px rgba(0,0,0,0.06)' : 'none',
     }}>
       <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 68 }}>
@@ -66,7 +88,7 @@ export default function Navbar() {
         {/* Logo */}
         <a href="#" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none', flexShrink: 0 }}>
           <img src={logo} alt="NEUROXISE" style={{ width: 38, height: 38, borderRadius: '50%', objectFit: 'cover' }} />
-          <span style={{ fontSize: 18, fontWeight: 700, color: '#1A1D2E', letterSpacing: '-0.3px' }}>
+          <span style={{ fontSize: 18, fontWeight: 700, color: c.text, letterSpacing: '-0.3px' }}>
             NEURO<span style={{ color: '#3D52F5' }}>XISE</span>
           </span>
         </a>
@@ -83,8 +105,24 @@ export default function Navbar() {
           })}
         </div>
 
-        {/* Right: lang switcher + CTA + burger */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+        {/* Right: dark toggle + lang switcher + CTA + burger */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+
+          {/* Dark mode toggle */}
+          <button
+            onClick={() => setIsDark(d => !d)}
+            title={isDark ? 'Light mode' : 'Dark mode'}
+            style={{
+              width: 36, height: 36, borderRadius: 10,
+              border: `1.5px solid ${c.border}`,
+              background: isDark ? '#1A1D2E' : '#fff',
+              color: isDark ? '#9DA8F5' : '#6B7080',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              cursor: 'pointer', transition: 'all 0.2s', flexShrink: 0,
+            }}
+          >
+            {isDark ? <SunIcon /> : <MoonIcon />}
+          </button>
 
           {/* Language switcher */}
           <div style={{ position: 'relative' }} onClick={e => e.stopPropagation()}>
@@ -93,11 +131,10 @@ export default function Navbar() {
               style={{
                 display: 'flex', alignItems: 'center', gap: 6,
                 padding: '8px 12px', borderRadius: 10,
-                border: '1.5px solid #E8E9F0',
-                background: '#fff',
-                fontSize: 13, fontWeight: 700, color: '#1A1D2E',
-                cursor: 'pointer', transition: 'all 0.2s',
-                fontFamily: 'inherit',
+                border: `1.5px solid ${c.border}`,
+                background: isDark ? '#1A1D2E' : '#fff',
+                fontSize: 13, fontWeight: 700, color: c.text,
+                cursor: 'pointer', transition: 'all 0.2s', fontFamily: 'inherit',
               }}
             >
               <LanguagesIcon size={15} color="#6B7080" strokeWidth={1.8} />
@@ -111,13 +148,11 @@ export default function Navbar() {
             {langOpen && (
               <div style={{
                 position: 'absolute', top: 'calc(100% + 8px)', right: 0,
-                background: '#fff',
+                background: isDark ? '#141728' : '#fff',
                 borderRadius: 14,
-                border: '1px solid #E8E9F0',
-                boxShadow: '0 8px 32px rgba(0,0,0,0.12)',
-                overflow: 'hidden',
-                minWidth: 140,
-                zIndex: 200,
+                border: `1px solid ${c.border}`,
+                boxShadow: '0 8px 32px rgba(0,0,0,0.18)',
+                overflow: 'hidden', minWidth: 140, zIndex: 200,
               }}>
                 {LANGS.map(l => (
                   <button
@@ -129,21 +164,18 @@ export default function Navbar() {
                       background: lang === l.code ? '#EEF0FF' : 'transparent',
                       border: 'none', cursor: 'pointer',
                       fontSize: 14, fontWeight: lang === l.code ? 700 : 500,
-                      color: lang === l.code ? '#3D52F5' : '#1A1D2E',
-                      fontFamily: 'inherit',
-                      textAlign: 'left',
-                      transition: 'background 0.15s',
+                      color: lang === l.code ? '#3D52F5' : c.text,
+                      fontFamily: 'inherit', textAlign: 'left', transition: 'background 0.15s',
                     }}
-                    onMouseEnter={e => { if (lang !== l.code) e.currentTarget.style.background = '#F5F6FA' }}
+                    onMouseEnter={e => { if (lang !== l.code) e.currentTarget.style.background = isDark ? '#1A1D2E' : '#F5F6FA' }}
                     onMouseLeave={e => { if (lang !== l.code) e.currentTarget.style.background = 'transparent' }}
                   >
                     <span style={{
                       width: 24, height: 24, borderRadius: 6,
-                      background: lang === l.code ? '#3D52F5' : '#F5F6FA',
+                      background: lang === l.code ? '#3D52F5' : (isDark ? '#252840' : '#F5F6FA'),
                       display: 'flex', alignItems: 'center', justifyContent: 'center',
                       fontSize: 10, fontWeight: 800,
-                      color: lang === l.code ? '#fff' : '#6B7080',
-                      flexShrink: 0,
+                      color: lang === l.code ? '#fff' : '#6B7080', flexShrink: 0,
                     }}>{l.label}</span>
                     {l.full}
                     {lang === l.code && (
@@ -161,9 +193,9 @@ export default function Navbar() {
 
           {/* Hamburger */}
           <button onClick={() => setMenuOpen(o => !o)} className="hamburger" aria-label="Menu">
-            <span className="bar" style={{ transform: menuOpen ? 'rotate(45deg) translateY(7px)' : 'none' }} />
-            <span className="bar" style={{ opacity: menuOpen ? 0 : 1 }} />
-            <span className="bar bar-short" style={{ transform: menuOpen ? 'rotate(-45deg) translateY(-7px)' : 'none', width: menuOpen ? 22 : 16 }} />
+            <span className="bar" style={{ transform: menuOpen ? 'rotate(45deg) translateY(7px)' : 'none', background: c.text }} />
+            <span className="bar" style={{ opacity: menuOpen ? 0 : 1, background: c.text }} />
+            <span className="bar bar-short" style={{ transform: menuOpen ? 'rotate(-45deg) translateY(-7px)' : 'none', width: menuOpen ? 22 : 16, background: c.text }} />
           </button>
         </div>
       </div>
@@ -176,20 +208,28 @@ export default function Navbar() {
           </a>
         ))}
 
-        {/* Mobile lang switcher */}
+        {/* Mobile lang + dark toggle */}
         <div style={{ display: 'flex', gap: 8, paddingTop: 14, paddingBottom: 4 }}>
           {LANGS.map(l => (
             <button key={l.code} onClick={() => { setLang(l.code); setMenuOpen(false) }} style={{
-              flex: 1, padding: '9px 0',
-              borderRadius: 10,
-              border: `2px solid ${lang === l.code ? '#3D52F5' : '#E8E9F0'}`,
-              background: lang === l.code ? '#EEF0FF' : '#fff',
-              color: lang === l.code ? '#3D52F5' : '#6B7080',
+              flex: 1, padding: '9px 0', borderRadius: 10,
+              border: `2px solid ${lang === l.code ? '#3D52F5' : c.border}`,
+              background: lang === l.code ? '#EEF0FF' : (isDark ? '#141728' : '#fff'),
+              color: lang === l.code ? '#3D52F5' : c.text2,
               fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit',
             }}>
               {l.label}
             </button>
           ))}
+          <button onClick={() => setIsDark(d => !d)} style={{
+            padding: '9px 12px', borderRadius: 10,
+            border: `2px solid ${c.border}`,
+            background: isDark ? '#1A1D2E' : '#fff',
+            color: isDark ? '#9DA8F5' : '#6B7080',
+            cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }}>
+            {isDark ? <SunIcon /> : <MoonIcon />}
+          </button>
         </div>
 
         <a href="#download" className="mobile-cta" onClick={() => setMenuOpen(false)}>
@@ -198,11 +238,11 @@ export default function Navbar() {
       </div>
 
       <style>{`
-        .nav-links { display: flex; gap: 28px; align-items: center; }
+        .nav-links { display: flex; gap: 24px; align-items: center; }
         .nav-link {
           font-size: 14px; font-weight: 500; color: #6B7080;
           text-decoration: none; transition: color 0.2s;
-          position: relative;
+          position: relative; white-space: nowrap;
         }
         .nav-link::after {
           content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
@@ -235,16 +275,11 @@ export default function Navbar() {
         .bar-short { width: 16px; }
 
         .mobile-menu {
-          display: none;
-          background: #fff;
-          border-top: 1px solid #E8E9F0;
-          padding: 0 20px;
-          max-height: 0;
-          overflow: hidden;
+          display: none; background: #fff; border-top: 1px solid #E8E9F0;
+          padding: 0 20px; max-height: 0; overflow: hidden;
           transition: max-height 0.35s ease, padding 0.35s ease;
         }
-        .mobile-menu-open { max-height: 460px; padding: 12px 20px 20px; }
-
+        .mobile-menu-open { max-height: 520px; padding: 12px 20px 20px; }
         .mobile-link {
           display: block; padding: 13px 0;
           font-size: 15px; font-weight: 500; color: #1A1D2E;
@@ -252,7 +287,6 @@ export default function Navbar() {
           transition: color 0.2s;
         }
         .mobile-link:hover { color: #3D52F5; }
-
         .mobile-cta {
           display: block; margin-top: 14px;
           background: #3D52F5; color: #fff;
@@ -261,6 +295,9 @@ export default function Navbar() {
           text-align: center; text-decoration: none;
         }
 
+        @media (max-width: 1050px) {
+          .nav-links { gap: 16px; }
+        }
         @media (max-width: 900px) {
           .nav-links { display: none !important; }
           .hamburger { display: flex !important; }

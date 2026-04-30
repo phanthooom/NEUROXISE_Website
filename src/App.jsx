@@ -6,11 +6,12 @@ import HowItWorks from './components/HowItWorks'
 import Exercises from './components/Exercises'
 import Stats from './components/Stats'
 import Pricing from './components/Pricing'
+import FAQ from './components/FAQ'
 import Download from './components/Download'
 import Footer from './components/Footer'
 import BackToTop from './components/BackToTop'
 
-const SECTIONS = [Features, HowItWorks, Exercises, Stats, Pricing, Download]
+const SECTIONS = [Features, HowItWorks, Exercises, Stats, Pricing, FAQ, Download]
 
 export default function App() {
   useEffect(() => {

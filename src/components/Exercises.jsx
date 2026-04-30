@@ -1,17 +1,18 @@
 import { useState } from 'react'
 import { useLanguage } from '../i18n/LanguageContext'
 import { BrainIcon, MicIcon, EyeIcon, BookOpenIcon, CheckSquareIcon } from './Icons'
+import { mkC } from '../theme'
 
-// Maps category index → SVG icon component
 const CAT_ICONS = [BrainIcon, MicIcon, EyeIcon, BookOpenIcon, CheckSquareIcon]
 
 const diffColor = { Easy: '#34C48C', Medium: '#F5A623', Hard: '#F55454', Oson: '#34C48C', "O'rta": '#F5A623', Qiyin: '#F55454', Легко: '#34C48C', Средне: '#F5A623', Сложно: '#F55454' }
 const diffBg    = { Easy: '#E8FAF3', Medium: '#FEF4E2', Hard: '#FEF0F0', Oson: '#E8FAF3', "O'rta": '#FEF4E2', Qiyin: '#FEF0F0', Легко: '#E8FAF3', Средне: '#FEF4E2', Сложно: '#FEF0F0' }
 
 export default function Exercises() {
-  const { t } = useLanguage()
+  const { t, isDark } = useLanguage()
   const ex = t.exercises
   const cats = ex.categories
+  const c = mkC(isDark)
 
   const [activeIdx, setActiveIdx] = useState(0)
   const cat = cats[activeIdx]
@@ -22,10 +23,10 @@ export default function Exercises() {
   const getDiffBg    = (diff) => diffBg[diff]    || diffBg[ex.diff[diff]]    || '#F5F6FA'
 
   return (
-    <section id="exercises" style={{ padding: '96px 0', background: '#F5F6FA' }}>
+    <section id="exercises" style={{ padding: '96px 0', background: c.pageBg }}>
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: 56 }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: '#EEF0FF', borderRadius: 999, padding: '6px 14px', marginBottom: 16 }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: c.badge, borderRadius: 999, padding: '6px 14px', marginBottom: 16 }}>
             <span style={{ fontSize: 13, fontWeight: 600, color: '#3D52F5' }}>{ex.badge}</span>
           </div>
           <h2 className="section-title">
@@ -37,26 +38,26 @@ export default function Exercises() {
 
         {/* Category tabs */}
         <div className="cat-tabs">
-          {cats.map((c, i) => {
+          {cats.map((cat_, i) => {
             const TabIcon = CAT_ICONS[i]
             const isActive = activeIdx === i
             return (
               <button key={i} onClick={() => setActiveIdx(i)} className="cat-tab"
                 style={{
-                  background: isActive ? c.color : '#fff',
-                  color:      isActive ? '#fff'  : '#6B7080',
-                  borderColor:isActive ? c.color : '#E8E9F0',
-                  boxShadow:  isActive ? `0 4px 14px ${c.color}40` : 'none',
+                  background: isActive ? cat_.color : c.cardBg,
+                  color:      isActive ? '#fff'     : c.text2,
+                  borderColor:isActive ? cat_.color : c.border,
+                  boxShadow:  isActive ? `0 4px 14px ${cat_.color}40` : 'none',
                 }}>
                 <TabIcon size={16} color={isActive ? '#fff' : '#9DA8F5'} strokeWidth={1.8} />
-                <span className="tab-label">{c.key}</span>
+                <span className="tab-label">{cat_.key}</span>
               </button>
             )
           })}
         </div>
 
         {/* Detail card */}
-        <div className="cat-detail">
+        <div className="cat-detail" style={{ background: c.cardBg, borderColor: c.border }}>
           <div className="cat-detail-left">
             <div style={{
               width: 72, height: 72, borderRadius: 20,
@@ -68,8 +69,8 @@ export default function Exercises() {
             }}>
               <CatIcon size={36} color={cat.color} strokeWidth={1.5} />
             </div>
-            <h3 style={{ fontSize: 26, fontWeight: 800, color: '#1A1D2E', marginBottom: 12 }}>{cat.key}</h3>
-            <p style={{ fontSize: 15, color: '#6B7080', lineHeight: 1.7, marginBottom: 28 }}>{cat.desc}</p>
+            <h3 style={{ fontSize: 26, fontWeight: 800, color: c.text, marginBottom: 12 }}>{cat.key}</h3>
+            <p style={{ fontSize: 15, color: c.text2, lineHeight: 1.7, marginBottom: 28 }}>{cat.desc}</p>
             <a href="#download" style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
               background: cat.color, color: '#fff', fontSize: 15, fontWeight: 600,
@@ -86,7 +87,8 @@ export default function Exercises() {
             {cat.exercises.map((exItem, i) => (
               <div key={i} className="ex-row"
                 onMouseEnter={e => { e.currentTarget.style.borderColor = cat.color; e.currentTarget.style.background = cat.bg }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = '#E8E9F0'; e.currentTarget.style.background = '#F5F6FA' }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = c.border; e.currentTarget.style.background = c.cardBg2 }}
+                style={{ background: c.cardBg2, borderColor: c.border }}
               >
                 <div style={{
                   width: 36, height: 36, borderRadius: 10, background: cat.bg,
@@ -96,8 +98,8 @@ export default function Exercises() {
                   {i + 1}
                 </div>
                 <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: 14, fontWeight: 600, color: '#1A1D2E' }}>{exItem.name}</div>
-                  <div style={{ fontSize: 12, color: '#6B7080', marginTop: 2 }}>{exItem.time}</div>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: c.text }}>{exItem.name}</div>
+                  <div style={{ fontSize: 12, color: c.text2, marginTop: 2 }}>{exItem.time}</div>
                 </div>
                 <span style={{
                   fontSize: 11, fontWeight: 700,
@@ -124,16 +126,16 @@ export default function Exercises() {
 
         .cat-detail {
           display: grid; grid-template-columns: 1fr 1fr; gap: 40px;
-          background: #fff; border-radius: 24px; padding: 40px;
-          border: 1px solid #E8E9F0; box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+          border-radius: 24px; padding: 40px;
+          border: 1px solid; box-shadow: 0 4px 24px rgba(0,0,0,0.05);
         }
         .cat-detail-left  { display: flex; flex-direction: column; }
         .cat-detail-right { display: flex; flex-direction: column; gap: 10px; }
 
         .ex-row {
           display: flex; align-items: center; gap: 14px;
-          padding: 14px 16px; background: #F5F6FA;
-          border-radius: 14px; border: 1px solid #E8E9F0;
+          padding: 14px 16px;
+          border-radius: 14px; border: 1px solid;
           transition: all 0.2s; cursor: pointer;
         }
 
