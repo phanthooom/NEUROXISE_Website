@@ -1,0 +1,593 @@
+const translations = {
+  ru: {
+    // Navbar
+    nav: {
+      features:   'Возможности',
+      howItWorks: 'Как это работает',
+      exercises:  'Упражнения',
+      stats:      'Статистика',
+      getApp:     'Скачать',
+    },
+
+    // Hero
+    hero: {
+      badge:      'Тренировки на основе нейронауки',
+      title1:     'Тренируй мозг.',
+      title2:     'Раскрой потенциал.',
+      desc:       'NEUROXISE предлагает персонализированные упражнения для речи, памяти, внимания и языка — помогая вам развивать когнитивные навыки каждый день.',
+      cta:        'Начать бесплатно',
+      secondary:  'Как это работает',
+      social:     'пользователей улучшают себя ежедневно',
+      // phone mockup
+      greeting:   'Доброе утро',
+      hello:      'Привет, Пользователь! 👋',
+      goal:       'Цель: Память',
+      dayStreak:  'Дней подряд',
+      thisWeek:   'На этой нед.',
+      accuracy:   'Точность',
+      todaysPlan: "Сегодняшний план",
+      seeAll:     'Все',
+      done:       'ГОТОВО',
+      // floating badges
+      streakBadge:  'Серия 7 дней!',
+      keepItUp:     'Продолжай!',
+      accuracyBadge:'94% Точность',
+      weekGrowth:   '+12% за неделю',
+      // exercise names in phone
+      wordRecall:    'Запоминание слов',
+      soundPatterns: 'Звуковые паттерны',
+      focusGrid:     'Сетка фокуса',
+      memory:        'Память',
+      speech:        'Речь',
+      attention:     'Внимание',
+      minLabel:      'мин',
+    },
+
+    // Features
+    features: {
+      badge:    'Почему NEUROXISE?',
+      title1:   'Всё для',
+      title2:   'эффективных тренировок',
+      subtitle: 'Основан на исследованиях когнитивной науки. NEUROXISE делает тренировку мозга результативной, измеримой и приятной.',
+      items: [
+        {
+          title: 'Персональный план',
+          desc:  'Планы на основе ИИ, адаптированные к вашим когнитивным целям, уровню и доступному времени.',
+        },
+        {
+          title: 'Отслеживание прогресса',
+          desc:  'Визуальная аналитика показывает точность, серии и еженедельный прогресс по всем категориям.',
+        },
+        {
+          title: 'Геймификация',
+          desc:  'Игровые упражнения поддерживают высокую мотивацию и при этом дают реальный терапевтический эффект.',
+        },
+        {
+          title: 'Мультиязычность',
+          desc:  'Полная поддержка русского, английского и узбекского языков — доступно широкой аудитории.',
+        },
+        {
+          title: 'Приватность и офлайн',
+          desc:  'Данные хранятся на устройстве. Основные упражнения работают полностью офлайн без учётной записи.',
+        },
+        {
+          title: 'Ежедневные серии',
+          desc:  'Формируйте устойчивые привычки с помощью счётчика серий и умных напоминаний под ваш график.',
+        },
+      ],
+    },
+
+    // How it works
+    howItWorks: {
+      badge:    'Простой процесс',
+      title:    'Как это работает',
+      subtitle: 'Начните за несколько минут и заметьте измеримые результаты уже через первую неделю.',
+      cta:      'Начать путь',
+      steps: [
+        {
+          title: 'Настройте профиль',
+          desc:  'Укажите свои цели — речевая терапия, улучшение памяти или ежедневный когнитивный уход. Мы составим персональный план.',
+        },
+        {
+          title: 'Выполняйте упражнения',
+          desc:  'Проходите увлекательные короткие упражнения по категориям: Речь, Язык, Память, Внимание, Повседневные навыки.',
+        },
+        {
+          title: 'Отслеживайте прогресс',
+          desc:  'Наблюдайте рост точности, серий и недельных сессий. Аналитика точно покажет, где вы прогрессируете.',
+        },
+      ],
+    },
+
+    // Exercises
+    exercises: {
+      badge:    'Библиотека упражнений',
+      title1:   '5 категорий,',
+      title2:   'безграничный рост',
+      subtitle: 'Каждая категория разработана когнитивными учёными для воздействия на конкретные функции мозга.',
+      tryBtn:   'Попробовать',
+      diff: { Easy: 'Легко', Medium: 'Средне', Hard: 'Сложно' },
+      categories: [
+        {
+          key:  'Память',
+          icon: '🧠',
+          color: '#3D52F5',
+          bg:   '#EEF0FF',
+          desc: 'Развивайте воспоминания, удержание и рабочую память с помощью словесных игр, распознавания паттернов и пространственных упражнений.',
+          exercises: [
+            { name: 'Запоминание слов',   time: '5 мин', diff: 'Medium' },
+            { name: 'Числовые ряды',      time: '4 мин', diff: 'Hard'   },
+            { name: 'Поиск пар',          time: '6 мин', diff: 'Easy'   },
+            { name: 'Пересказ истории',   time: '8 мин', diff: 'Medium' },
+          ],
+        },
+        {
+          key:  'Речь',
+          icon: '🎤',
+          color: '#9B59F5',
+          bg:   '#F3EEFF',
+          desc: 'Улучшайте беглость, артикуляцию и чёткость речи через структурированные повторения и голосовые упражнения.',
+          exercises: [
+            { name: 'Скороговорки',       time: '3 мин', diff: 'Medium' },
+            { name: 'Повтор предложений', time: '5 мин', diff: 'Easy'   },
+            { name: 'Звуковые паттерны',  time: '4 мин', diff: 'Hard'   },
+            { name: 'Произношение слов',  time: '6 мин', diff: 'Medium' },
+          ],
+        },
+        {
+          key:  'Внимание',
+          icon: '⚡',
+          color: '#F5A623',
+          bg:   '#FEF4E2',
+          desc: 'Развивайте устойчивое и избирательное внимание, чтобы фильтровать отвлекающие факторы и дольше концентрироваться.',
+          exercises: [
+            { name: 'Сетка фокуса',       time: '4 мин', diff: 'Hard'   },
+            { name: 'Смена цвета',        time: '3 мин', diff: 'Medium' },
+            { name: 'Найди отличие',      time: '5 мин', diff: 'Easy'   },
+            { name: 'Dual N-Back',        time: '7 мин', diff: 'Hard'   },
+          ],
+        },
+        {
+          key:  'Язык',
+          icon: '📖',
+          color: '#34C48C',
+          bg:   '#E8FAF3',
+          desc: 'Расширяйте словарный запас, понимание и грамматику с помощью чтения и словообразовательных заданий.',
+          exercises: [
+            { name: 'Конструктор слов',   time: '5 мин',  diff: 'Medium' },
+            { name: 'Порядок слов',       time: '4 мин',  diff: 'Easy'   },
+            { name: 'Синонимы',           time: '3 мин',  diff: 'Easy'   },
+            { name: 'Понимание текста',   time: '10 мин', diff: 'Medium' },
+          ],
+        },
+        {
+          key:  'Навыки',
+          icon: '🌟',
+          color: '#F55454',
+          bg:   '#FEF0F0',
+          desc: 'Функциональные задачи реального мира, которые напрямую улучшают повседневную деятельность.',
+          exercises: [
+            { name: 'Управление временем', time: '6 мин', diff: 'Medium' },
+            { name: 'Принятие решений',   time: '5 мин',  diff: 'Easy'   },
+            { name: 'Решение задач',      time: '8 мин',  diff: 'Hard'   },
+            { name: 'Соц. ситуации',      time: '7 мин',  diff: 'Medium' },
+          ],
+        },
+      ],
+    },
+
+    // Stats
+    stats: {
+      items: [
+        { label: 'Активных пользователей' },
+        { label: 'Доступных упражнений'   },
+        { label: 'Средняя точность'       },
+        { label: 'Рейтинг App Store'      },
+      ],
+      testimonialsTitle:    'Что говорят пользователи',
+      testimonialsSubtitle: 'Реальные истории людей, улучшающих себя каждый день',
+      testimonials: [
+        {
+          name: 'Сара М.',
+          role: 'Пациент речевой терапии',
+          text: 'NEUROXISE стал настоящим переломным моментом в моём восстановлении. Речевые упражнения идеально подобраны, и я вижу прогресс каждый день.',
+        },
+        {
+          name: 'Давид К.',
+          role: 'Студент, 22 года',
+          text: 'Моя концентрация на экзаменах значительно улучшилась всего за 3 недели. Упражнения на внимание — сложные в самом лучшем смысле.',
+        },
+        {
+          name: 'Лена П.',
+          role: 'Деловой специалист',
+          text: 'Использую каждое утро как умственную разминку. Система серий держит меня ответственной, а геймификация делает процесс приятным.',
+        },
+      ],
+    },
+
+    // Download
+    download: {
+      badge:  'Доступно сейчас',
+      title:  'Начни тренировать мозг уже сегодня',
+      desc:   'Скачайте NEUROXISE бесплатно. Подписка не нужна — получите доступ к основным упражнениям сразу и обновляйтесь в любое время.',
+      appStore:   'Загрузить в',
+      appStoreSub:'App Store',
+      playStore:  'Доступно в',
+      playStoreSub:'Google Play',
+      features: [
+        { icon: '🆓', label: 'Бесплатный старт',    sub: 'Карта не нужна'         },
+        { icon: '📱', label: 'iOS и Android',        sub: 'Кроссплатформенность'   },
+        { icon: '🔒', label: 'Приватность по умолч.',sub: 'Аккаунт не нужен'       },
+        { icon: '🌐', label: '3 языка',              sub: 'RU · EN · UZ'           },
+      ],
+    },
+
+    // Footer
+    footer: {
+      tagline: 'Тренировки мозга на основе науки для каждого. Улучшайте концентрацию, память и речь каждый день.',
+      badge:   'Когнитивные тренировки и терапия',
+      copyright: '© 2025 NEUROXISE. Все права защищены.',
+      sections: {
+        Product:   'Продукт',
+        Company:   'Компания',
+        Support:   'Поддержка',
+        Community: 'Сообщество',
+      },
+      links: {
+        Product:   ['Возможности', 'Упражнения', 'Отслеживание', 'Цены'],
+        Company:   ['О нас', 'Блог', 'Карьера', 'Пресса'],
+        Support:   ['Справка', 'Контакты', 'Конфиденциальность', 'Условия'],
+        Community: ['Twitter / X', 'Instagram', 'LinkedIn', 'Discord'],
+      },
+      legal: ['Конфиденциальность', 'Условия', 'Cookies'],
+    },
+  },
+
+  // ─────────────────────────────── ENGLISH ───────────────────────────────
+  en: {
+    nav: {
+      features:   'Features',
+      howItWorks: 'How it Works',
+      exercises:  'Exercises',
+      stats:      'Stats',
+      getApp:     'Get App',
+    },
+    hero: {
+      badge:      'Science-backed cognitive training',
+      title1:     'Train Your Brain.',
+      title2:     'Unlock Your Potential.',
+      desc:       'NEUROXISE delivers personalized exercises for speech, memory, attention and language — helping you build sharper cognitive skills every day.',
+      cta:        'Start Training Free',
+      secondary:  'See How It Works',
+      social:     'users improving daily',
+      greeting:   'Good Morning',
+      hello:      'Hello, User! 👋',
+      goal:       'Goal: Memory',
+      dayStreak:  'Day Streak',
+      thisWeek:   'This Week',
+      accuracy:   'Accuracy',
+      todaysPlan: "Today's Plan",
+      seeAll:     'All',
+      done:       'DONE',
+      streakBadge:  '7-Day Streak!',
+      keepItUp:     'Keep it up',
+      accuracyBadge:'94% Accuracy',
+      weekGrowth:   '+12% this week',
+      wordRecall:    'Word Recall',
+      soundPatterns: 'Sound Patterns',
+      focusGrid:     'Focus Grid',
+      memory:        'Memory',
+      speech:        'Speech',
+      attention:     'Attention',
+      minLabel:      'min',
+    },
+    features: {
+      badge:    'Why NEUROXISE?',
+      title1:   'Everything you need to',
+      title2:   'train smarter',
+      subtitle: 'Built on cognitive science research, NEUROXISE makes brain training effective, measurable and enjoyable.',
+      items: [
+        { title: 'Personalized Training',  desc: 'AI-driven plans tailored to your specific cognitive goals, difficulty level, and daily availability.' },
+        { title: 'Progress Tracking',      desc: 'Visual analytics show your accuracy, streaks and weekly improvements across all exercise categories.' },
+        { title: 'Gamified Exercises',     desc: 'Engaging game-based activities keep motivation high while delivering real therapeutic benefit.' },
+        { title: 'Multilingual Support',   desc: 'Full support for English, Russian and Uzbek — accessible to a broad global user base.' },
+        { title: 'Private & Offline',      desc: 'Your data stays on your device. Core exercises work fully offline without any account required.' },
+        { title: 'Daily Streaks',          desc: 'Build lasting habits with streak tracking and smart reminders that adapt to your schedule.' },
+      ],
+    },
+    howItWorks: {
+      badge:    'Simple Process',
+      title:    'How it works',
+      subtitle: 'Get started in minutes and begin seeing measurable results within the first week.',
+      cta:      'Start Your Journey',
+      steps: [
+        { title: 'Set Up Your Profile',        desc: "Tell us your goals — whether it's speech therapy, memory improvement, or daily cognitive maintenance. We create your personalized plan." },
+        { title: 'Complete Daily Exercises',   desc: 'Work through engaging, bite-sized exercises across Speech, Language, Memory, Attention, and Daily Skills categories.' },
+        { title: 'Track Your Progress',        desc: "Watch your accuracy, streak days and weekly sessions grow. Our analytics reveal exactly where you're improving." },
+      ],
+    },
+    exercises: {
+      badge:    'Exercise Library',
+      title1:   '5 Categories,',
+      title2:   'limitless growth',
+      subtitle: 'Each category is carefully designed by cognitive scientists to target specific brain functions.',
+      tryBtn:   'Try',
+      diff: { Easy: 'Easy', Medium: 'Medium', Hard: 'Hard' },
+      categories: [
+        {
+          key: 'Memory', icon: '🧠', color: '#3D52F5', bg: '#EEF0FF',
+          desc: 'Sharpen recall, retention and working memory with word games, pattern recognition and spatial exercises.',
+          exercises: [
+            { name: 'Word Recall',      time: '5 min', diff: 'Medium' },
+            { name: 'Number Sequences', time: '4 min', diff: 'Hard'   },
+            { name: 'Picture Matching', time: '6 min', diff: 'Easy'   },
+            { name: 'Story Retell',     time: '8 min', diff: 'Medium' },
+          ],
+        },
+        {
+          key: 'Speech', icon: '🎤', color: '#9B59F5', bg: '#F3EEFF',
+          desc: 'Improve fluency, articulation and vocal clarity through structured repetition and voice exercises.',
+          exercises: [
+            { name: 'Tongue Twisters',    time: '3 min', diff: 'Medium' },
+            { name: 'Sentence Repeat',    time: '5 min', diff: 'Easy'   },
+            { name: 'Sound Patterns',     time: '4 min', diff: 'Hard'   },
+            { name: 'Word Pronunciation', time: '6 min', diff: 'Medium' },
+          ],
+        },
+        {
+          key: 'Attention', icon: '⚡', color: '#F5A623', bg: '#FEF4E2',
+          desc: 'Build sustained focus and selective attention to filter distractions and stay on task longer.',
+          exercises: [
+            { name: 'Focus Grid',    time: '4 min', diff: 'Hard'   },
+            { name: 'Color Switch',  time: '3 min', diff: 'Medium' },
+            { name: 'Spot the Diff', time: '5 min', diff: 'Easy'   },
+            { name: 'Dual N-Back',   time: '7 min', diff: 'Hard'   },
+          ],
+        },
+        {
+          key: 'Language', icon: '📖', color: '#34C48C', bg: '#E8FAF3',
+          desc: 'Expand vocabulary, comprehension and grammar skills through reading and word-construction tasks.',
+          exercises: [
+            { name: 'Word Builder',   time: '5 min',  diff: 'Medium' },
+            { name: 'Sentence Order', time: '4 min',  diff: 'Easy'   },
+            { name: 'Synonyms',       time: '3 min',  diff: 'Easy'   },
+            { name: 'Reading Comp.',  time: '10 min', diff: 'Medium' },
+          ],
+        },
+        {
+          key: 'Daily Skills', icon: '🌟', color: '#F55454', bg: '#FEF0F0',
+          desc: 'Real-world functional tasks that translate directly to better performance in everyday activities.',
+          exercises: [
+            { name: 'Time Management', time: '6 min', diff: 'Medium' },
+            { name: 'Decision Making',  time: '5 min', diff: 'Easy'   },
+            { name: 'Problem Solving',  time: '8 min', diff: 'Hard'   },
+            { name: 'Social Scenarios', time: '7 min', diff: 'Medium' },
+          ],
+        },
+      ],
+    },
+    stats: {
+      items: [
+        { label: 'Active Users'         },
+        { label: 'Exercises Available'  },
+        { label: 'Average Accuracy'     },
+        { label: 'App Store Rating'     },
+      ],
+      testimonialsTitle:    'What our users say',
+      testimonialsSubtitle: 'Real stories from people improving every day',
+      testimonials: [
+        { name: 'Sarah M.',  role: 'Speech Therapy Patient',  text: 'NEUROXISE has been a game-changer in my recovery. The speech exercises are perfectly paced and I can see my progress every single day.' },
+        { name: 'David K.',  role: 'Student, 22',             text: 'My exam focus improved dramatically after just 3 weeks. The attention exercises are challenging in the best way possible.' },
+        { name: 'Lena P.',   role: 'Corporate Professional',  text: 'I use it every morning as mental warm-up. The streak system keeps me accountable and the gamified approach makes it enjoyable.' },
+      ],
+    },
+    download: {
+      badge:  'Available Now',
+      title:  'Start training your brain today',
+      desc:   'Download NEUROXISE for free. No subscription required — access core exercises immediately and upgrade anytime.',
+      appStore:    'Download on the',
+      appStoreSub: 'App Store',
+      playStore:   'Get it on',
+      playStoreSub:'Google Play',
+      features: [
+        { icon: '🆓', label: 'Free to start',      sub: 'No credit card needed'  },
+        { icon: '📱', label: 'iOS & Android',       sub: 'Cross-platform support' },
+        { icon: '🔒', label: 'Private by default',  sub: 'No account required'    },
+        { icon: '🌐', label: '3 languages',         sub: 'EN · RU · UZ'           },
+      ],
+    },
+    footer: {
+      tagline:   'Science-backed cognitive training for everyone. Build better focus, memory and speech every day.',
+      badge:     'Cognitive Training & Therapy',
+      copyright: '© 2025 NEUROXISE. All rights reserved.',
+      sections: {
+        Product:   'Product',
+        Company:   'Company',
+        Support:   'Support',
+        Community: 'Community',
+      },
+      links: {
+        Product:   ['Features', 'Exercises', 'Progress Tracking', 'Pricing'],
+        Company:   ['About', 'Blog', 'Careers', 'Press'],
+        Support:   ['Help Center', 'Contact Us', 'Privacy Policy', 'Terms of Service'],
+        Community: ['Twitter / X', 'Instagram', 'LinkedIn', 'Discord'],
+      },
+      legal: ['Privacy', 'Terms', 'Cookies'],
+    },
+  },
+
+  // ─────────────────────────────── UZBEK ───────────────────────────────
+  uz: {
+    nav: {
+      features:   'Imkoniyatlar',
+      howItWorks: 'Qanday ishlaydi',
+      exercises:  'Mashqlar',
+      stats:      'Statistika',
+      getApp:     'Yuklab olish',
+    },
+    hero: {
+      badge:      'Neyrofan asosidagi kognitiv mashqlar',
+      title1:     'Miyangni mashq qil.',
+      title2:     'Salohiyatingni ochib ber.',
+      desc:       "NEUROXISE nutq, xotira, diqqat va til uchun shaxsiy mashqlar taklif etadi — har kuni kognitiv ko'nikmalarni rivojlantirish uchun.",
+      cta:        "Bepul boshlash",
+      secondary:  'Qanday ishlashini ko\'rish',
+      social:     'foydalanuvchi har kuni rivojlanmoqda',
+      greeting:   'Xayrli tong',
+      hello:      'Salom, Foydalanuvchi! 👋',
+      goal:       'Maqsad: Xotira',
+      dayStreak:  'Kunlik seria',
+      thisWeek:   'Bu hafta',
+      accuracy:   'Aniqlik',
+      todaysPlan: "Bugungi reja",
+      seeAll:     'Barchasi',
+      done:       'BAJARILDI',
+      streakBadge:  '7 kunlik seria!',
+      keepItUp:     'Davom eting!',
+      accuracyBadge:'94% Aniqlik',
+      weekGrowth:   '+12% bu hafta',
+      wordRecall:    'So\'z eslab qolish',
+      soundPatterns: 'Tovush naqshlari',
+      focusGrid:     'Diqqat panjarasi',
+      memory:        'Xotira',
+      speech:        'Nutq',
+      attention:     'Diqqat',
+      minLabel:      'daq',
+    },
+    features: {
+      badge:    'Nima uchun NEUROXISE?',
+      title1:   'Samarali mashq uchun',
+      title2:   'kerakli hamma narsa',
+      subtitle: "Kognitiv fan tadqiqotlari asosida qurilgan. NEUROXISE miya mashqini samarali, o'lchanadigan va qiziqarli qiladi.",
+      items: [
+        { title: 'Shaxsiy reja',        desc: "Sun'iy intellekt asosidagi rejalar sizning kognitiv maqsadlaringiz, darajangiz va vaqtingizga moslashtirilgan." },
+        { title: 'Taraqqiyotni kuzatish',desc: "Vizual analitika barcha kategoriyalar bo'yicha aniqlik, serialar va haftalik o'sishni ko'rsatadi." },
+        { title: 'Gamifikatsiya',        desc: "O'yin asosidagi mashqlar yuqori motivatsiyani saqlab, haqiqiy terapevtik foyda keltiradi." },
+        { title: 'Ko\'p tillilik',       desc: "O'zbek, rus va ingliz tillarini to'liq qo'llab-quvvatlash — keng auditoriya uchun qulay." },
+        { title: 'Maxfiylik va oflayn',  desc: "Ma'lumotlar qurilmangizda saqlanadi. Asosiy mashqlar hisob yaratmasdan oflayn ishlaydi." },
+        { title: 'Kunlik serialar',      desc: "Seriyani kuzatish va aqlli eslatmalar yordamida uzoq muddatli odatlar shakllantiring." },
+      ],
+    },
+    howItWorks: {
+      badge:    'Oddiy jarayon',
+      title:    'Qanday ishlaydi',
+      subtitle: "Bir necha daqiqada boshlang va birinchi haftada o'lchanadigan natijalarni ko'ring.",
+      cta:      'Yo\'lni boshlash',
+      steps: [
+        { title: 'Profilingizni sozlang',    desc: "Maqsadlaringizni ayting — nutq terapiyasi, xotirani yaxshilash yoki kunlik kognitiv parvarish. Biz shaxsiy reja tuzib beramiz." },
+        { title: 'Kunlik mashqlarni bajaring',desc: "Nutq, Til, Xotira, Diqqat va Kundalik ko'nikmalar bo'yicha qisqa va qiziqarli mashqlardan o'ting." },
+        { title: 'Taraqqiyotingizni kuzating',desc: "Aniqlik, seria kunlari va haftalik sessiyalaringiz o'sishini kuzating. Analitika qayerda o'sayotganingizni ko'rsatadi." },
+      ],
+    },
+    exercises: {
+      badge:    'Mashqlar kutubxonasi',
+      title1:   '5 kategoriya,',
+      title2:   'cheksiz o\'sish',
+      subtitle: "Har bir kategoriya kognitiv olimlar tomonidan miya funksiyalarini maqsadli rivojlantirish uchun ishlab chiqilgan.",
+      tryBtn:   'Sinab ko\'rish',
+      diff: { Easy: 'Oson', Medium: "O'rta", Hard: 'Qiyin' },
+      categories: [
+        {
+          key: 'Xotira', icon: '🧠', color: '#3D52F5', bg: '#EEF0FF',
+          desc: "So'z o'yinlari, naqshlarni tanish va fazoviy mashqlar orqali eslab qolish, saqlash va ishchi xotirani rivojlantiring.",
+          exercises: [
+            { name: "So'z eslab qolish",  time: '5 daq', diff: 'Medium' },
+            { name: 'Raqamlar ketma-ket', time: '4 daq', diff: 'Hard'   },
+            { name: 'Juftlik topish',     time: '6 daq', diff: 'Easy'   },
+            { name: "Hikoyani qayta aytish",time: '8 daq',diff: 'Medium' },
+          ],
+        },
+        {
+          key: 'Nutq', icon: '🎤', color: '#9B59F5', bg: '#F3EEFF',
+          desc: "Tuzilgan takrorlash va ovozli mashqlar orqali ravonlik, artikulyatsiya va nutq aniqligini oshiring.",
+          exercises: [
+            { name: 'Tez aytishlar',     time: '3 daq', diff: 'Medium' },
+            { name: 'Gapni takrorlash',  time: '5 daq', diff: 'Easy'   },
+            { name: 'Tovush naqshlari',  time: '4 daq', diff: 'Hard'   },
+            { name: "So'z talaffuzi",    time: '6 daq', diff: 'Medium' },
+          ],
+        },
+        {
+          key: 'Diqqat', icon: '⚡', color: '#F5A623', bg: '#FEF4E2',
+          desc: "Chalg'ituvchi omillarni filtrlash va vazifaga uzoqroq e'tibor qaratish uchun barqaror va tanlab e'tibor qilishni rivojlantiring.",
+          exercises: [
+            { name: 'Diqqat panjarasi',  time: '4 daq', diff: 'Hard'   },
+            { name: 'Rang almashish',    time: '3 daq', diff: 'Medium' },
+            { name: 'Farqni top',        time: '5 daq', diff: 'Easy'   },
+            { name: 'Dual N-Back',       time: '7 daq', diff: 'Hard'   },
+          ],
+        },
+        {
+          key: 'Til', icon: '📖', color: '#34C48C', bg: '#E8FAF3',
+          desc: "O'qish va so'z qurish vazifalari orqali lug'at, tushunish va grammatika ko'nikmalarini kengaytiring.",
+          exercises: [
+            { name: "So'z quruvchi",     time: '5 daq',  diff: 'Medium' },
+            { name: "So'zlar tartibi",   time: '4 daq',  diff: 'Easy'   },
+            { name: 'Sinonimlar',        time: '3 daq',  diff: 'Easy'   },
+            { name: 'Matn tushunish',    time: '10 daq', diff: 'Medium' },
+          ],
+        },
+        {
+          key: "Kundalik ko'nikmalar", icon: '🌟', color: '#F55454', bg: '#FEF0F0',
+          desc: "Kundalik faoliyatda to'g'ridan-to'g'ri samaradorlikni oshiruvchi haqiqiy hayotiy funksional vazifalar.",
+          exercises: [
+            { name: "Vaqtni boshqarish", time: '6 daq', diff: 'Medium' },
+            { name: 'Qaror qabul qilish',time: '5 daq',  diff: 'Easy'   },
+            { name: 'Muammoni hal qilish',time: '8 daq', diff: 'Hard'   },
+            { name: 'Ijtimoiy vaziyatlar',time: '7 daq', diff: 'Medium' },
+          ],
+        },
+      ],
+    },
+    stats: {
+      items: [
+        { label: 'Faol foydalanuvchilar' },
+        { label: 'Mavjud mashqlar'       },
+        { label: "O'rtacha aniqlik"      },
+        { label: 'App Store reytingi'    },
+      ],
+      testimonialsTitle:    'Foydalanuvchilar nima deydi',
+      testimonialsSubtitle: "Har kuni o'zini rivojlantirayotgan odamlarning haqiqiy hikoyalari",
+      testimonials: [
+        { name: 'Sara M.',  role: 'Nutq terapiyasi bemorasi', text: "NEUROXISE tuzalishimda o'zgaruvchan nuqta bo'ldi. Nutq mashqlari juda mos tezlikda va har kuni taraqqiyotimni ko'raman." },
+        { name: 'Davud K.', role: 'Talaba, 22 yosh',          text: "Imtihondagi e'tiborim 3 haftada sezilarli darajada yaxshilandi. Diqqat mashqlari eng yaxshi ma'noda qiyin." },
+        { name: 'Lena P.',  role: 'Korporativ mutaxassis',    text: "Har kuni ertalab aqliy isitish sifatida ishlataman. Seria tizimi mas'uliyatli tutadi va o'yinlashtirish jarayonni qiziqarli qiladi." },
+      ],
+    },
+    download: {
+      badge:  'Hoziroq mavjud',
+      title:  'Bugun miyangizni mashq qilishni boshlang',
+      desc:   "NEUROXISE-ni bepul yuklab oling. Obuna kerak emas — asosiy mashqlarga darhol kiring va istalgan vaqt yangilang.",
+      appStore:    'Yuklab olish',
+      appStoreSub: 'App Store',
+      playStore:   "Olish",
+      playStoreSub:'Google Play',
+      features: [
+        { icon: '🆓', label: 'Bepul boshlash',    sub: 'Karta kerak emas'         },
+        { icon: '📱', label: 'iOS va Android',    sub: 'Kross-platforma qo\'llab'  },
+        { icon: '🔒', label: 'Maxfiylik asosiy',  sub: 'Hisob kerak emas'         },
+        { icon: '🌐', label: '3 til',             sub: 'UZ · RU · EN'             },
+      ],
+    },
+    footer: {
+      tagline:   "Hamma uchun fan asosidagi kognitiv mashqlar. Har kuni e'tibor, xotira va nutqni yaxshilang.",
+      badge:     'Kognitiv mashqlar va terapiya',
+      copyright: '© 2025 NEUROXISE. Barcha huquqlar himoyalangan.',
+      sections: {
+        Product:   'Mahsulot',
+        Company:   'Kompaniya',
+        Support:   'Qo\'llab-quvvatlash',
+        Community: 'Jamiyat',
+      },
+      links: {
+        Product:   ['Imkoniyatlar', 'Mashqlar', 'Kuzatish', 'Narxlar'],
+        Company:   ['Biz haqimizda', 'Blog', 'Karyera', 'Matbuot'],
+        Support:   ['Yordam markazi', 'Aloqa', 'Maxfiylik', 'Shartlar'],
+        Community: ['Twitter / X', 'Instagram', 'LinkedIn', 'Discord'],
+      },
+      legal: ['Maxfiylik', 'Shartlar', 'Cookies'],
+    },
+  },
+}
+
+export default translations
