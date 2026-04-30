@@ -11,14 +11,25 @@ const LANGS = [
 
 export default function Navbar() {
   const { lang, setLang, t } = useLanguage()
-  const [scrolled, setScrolled]   = useState(false)
-  const [menuOpen, setMenuOpen]   = useState(false)
-  const [langOpen, setLangOpen]   = useState(false)
+  const [scrolled, setScrolled]     = useState(false)
+  const [menuOpen, setMenuOpen]     = useState(false)
+  const [langOpen, setLangOpen]     = useState(false)
+  const [activeId, setActiveId]     = useState('')
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
-    window.addEventListener('scroll', onScroll)
+    window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
+  useEffect(() => {
+    const sections = document.querySelectorAll('section[id]')
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) setActiveId(e.target.id) }),
+      { rootMargin: '-35% 0px -60% 0px' }
+    )
+    sections.forEach(s => observer.observe(s))
+    return () => observer.disconnect()
   }, [])
 
   // Close lang dropdown on outside click
@@ -61,9 +72,14 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <div className="nav-links">
-          {navLinks.map(l => (
-            <a key={l.href} href={l.href} className="nav-link">{l.label}</a>
-          ))}
+          {navLinks.map(l => {
+            const isActive = activeId === l.href.replace('#', '')
+            return (
+              <a key={l.href} href={l.href} className={`nav-link${isActive ? ' nav-link-active' : ''}`}>
+                {l.label}
+              </a>
+            )
+          })}
         </div>
 
         {/* Right: lang switcher + CTA + burger */}
@@ -185,8 +201,17 @@ export default function Navbar() {
         .nav-link {
           font-size: 14px; font-weight: 500; color: #6B7080;
           text-decoration: none; transition: color 0.2s;
+          position: relative;
+        }
+        .nav-link::after {
+          content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+          height: 2px; background: #3D52F5; border-radius: 1px;
+          transform: scaleX(0); transition: transform 0.2s ease;
         }
         .nav-link:hover { color: #3D52F5; }
+        .nav-link:hover::after { transform: scaleX(1); }
+        .nav-link-active { color: #3D52F5 !important; }
+        .nav-link-active::after { transform: scaleX(1) !important; }
 
         .nav-cta {
           background: #3D52F5; color: #fff;
