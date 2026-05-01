@@ -1,6 +1,14 @@
 import SiteChrome from '../layouts/SiteChrome'
 import { useLanguage } from '../i18n/LanguageContext'
 import { mkC } from '../theme'
+import { TagIcon, BookOpenIcon, ImageIcon, UserIcon } from '../components/Icons'
+
+const KIT_META = [
+  { Icon: TagIcon,      color: '#3D52F5', bg: '#EEF0FF' },
+  { Icon: BookOpenIcon, color: '#34C48C', bg: '#E8FAF3' },
+  { Icon: ImageIcon,    color: '#9B59F5', bg: '#F3EEFF' },
+  { Icon: UserIcon,     color: '#F5A623', bg: '#FEF4E2' },
+]
 
 const UI = {
   ru: {
@@ -113,13 +121,18 @@ export default function PressPage() {
           {/* Kit cards */}
           <h2 style={{ color: c.text, fontSize: 22, fontWeight: 700, marginTop: 44, marginBottom: 18 }}>{t.kitTitle}</h2>
           <div className="pr-kit-grid">
-            {t.kit.map((item, i) => (
+            {t.kit.map((item, i) => {
+              const { Icon, color, bg } = KIT_META[i]
+              return (
               <div key={item.title} className="pr-kit-card" style={{ background: isDark ? '#141728' : '#fff', borderColor: c.border, animationDelay: `${i * 80}ms` }}>
-                <span style={{ fontSize: 30 }}>{item.icon}</span>
-                <h3 style={{ color: c.text, fontSize: 16, fontWeight: 700, margin: '10px 0 6px' }}>{item.title}</h3>
+                <div style={{ width: 52, height: 52, borderRadius: 14, background: bg, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}>
+                  <Icon size={24} color={color} strokeWidth={1.8} />
+                </div>
+                <h3 style={{ color: c.text, fontSize: 16, fontWeight: 700, marginBottom: 6 }}>{item.title}</h3>
                 <p style={{ color: c.text2, fontSize: 13, lineHeight: 1.65 }}>{item.desc}</p>
               </div>
-            ))}
+              )
+            })}
           </div>
           <p style={{ color: c.text2, fontSize: 14, marginTop: 16, marginBottom: 32 }}>{t.kitNote}</p>
 

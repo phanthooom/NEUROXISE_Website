@@ -2,6 +2,13 @@ import { useState } from 'react'
 import SiteChrome from '../layouts/SiteChrome'
 import { useLanguage } from '../i18n/LanguageContext'
 import { mkC } from '../theme'
+import { MailIcon, UsersIcon, NewspaperIcon } from '../components/Icons'
+
+const CHANNEL_META = [
+  { Icon: MailIcon,      color: '#3D52F5', bg: '#EEF0FF' },
+  { Icon: UsersIcon,     color: '#34C48C', bg: '#E8FAF3' },
+  { Icon: NewspaperIcon, color: '#9B59F5', bg: '#F3EEFF' },
+]
 
 const UI = {
   ru: {
@@ -108,16 +115,21 @@ export default function ContactPage() {
           <div className="ct-layout">
             {/* Channel cards */}
             <div className="ct-channels">
-              {t.channels.map((ch, i) => (
+              {t.channels.map((ch, i) => {
+                const { Icon, color, bg } = CHANNEL_META[i]
+                return (
                 <a key={ch.email} href={`mailto:${ch.email}`} className="ct-channel" style={{ background: isDark ? '#141728' : '#fff', borderColor: c.border, animationDelay: `${i * 90}ms` }}>
-                  <span style={{ fontSize: 26 }}>{ch.icon}</span>
+                  <div style={{ width: 44, height: 44, borderRadius: 12, background: bg, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    <Icon size={20} color={color} strokeWidth={1.8} />
+                  </div>
                   <div>
                     <div style={{ color: c.text, fontWeight: 700, fontSize: 15, marginBottom: 2 }}>{ch.label}</div>
                     <div style={{ color: '#3D52F5', fontWeight: 600, fontSize: 13, marginBottom: 4 }}>{ch.email}</div>
                     <div style={{ color: c.text2, fontSize: 12 }}>{ch.note}</div>
                   </div>
                 </a>
-              ))}
+                )
+              })}
 
               {/* Notice */}
               <div className="ct-notice" style={{ background: isDark ? 'rgba(220,38,38,.1)' : '#FFF5F5', borderColor: isDark ? 'rgba(220,38,38,.25)' : '#FECACA' }}>

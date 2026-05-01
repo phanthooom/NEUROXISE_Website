@@ -1,6 +1,22 @@
 import SiteChrome from '../layouts/SiteChrome'
 import { useLanguage } from '../i18n/LanguageContext'
 import { mkC } from '../theme'
+import { TargetIcon, LayersIcon, FlameIcon, BarChartIcon, RefreshIcon, BrainIcon, MicIcon, CrosshairIcon, TrendingUpIcon } from '../components/Icons'
+
+const STEP_META = [
+  { Icon: TargetIcon,   color: '#3D52F5', bg: '#EEF0FF' },
+  { Icon: LayersIcon,   color: '#9B59F5', bg: '#F3EEFF' },
+  { Icon: FlameIcon,    color: '#34C48C', bg: '#E8FAF3' },
+  { Icon: BarChartIcon, color: '#F5A623', bg: '#FEF4E2' },
+  { Icon: RefreshIcon,  color: '#F55454', bg: '#FEF0F0' },
+]
+
+const OUTCOME_META = [
+  { Icon: BrainIcon,      color: '#3D52F5', bg: '#EEF0FF' },
+  { Icon: MicIcon,        color: '#9B59F5', bg: '#F3EEFF' },
+  { Icon: CrosshairIcon,  color: '#34C48C', bg: '#E8FAF3' },
+  { Icon: TrendingUpIcon, color: '#F5A623', bg: '#FEF4E2' },
+]
 
 const STEPS = {
   ru: [
@@ -177,8 +193,8 @@ export default function HowItWorksPage() {
   const { lang, isDark } = useLanguage()
   const c = mkC(isDark)
   const t = UI[lang] || UI.ru
-  const steps = STEPS[lang] || STEPS.ru
-  const outcomes = OUTCOMES[lang] || OUTCOMES.ru
+  const steps = (STEPS[lang] || STEPS.ru).map((s, i) => ({ ...s, ...STEP_META[i] }))
+  const outcomes = (OUTCOMES[lang] || OUTCOMES.ru).map((o, i) => ({ ...o, ...OUTCOME_META[i] }))
 
   return (
     <SiteChrome>
@@ -203,7 +219,7 @@ export default function HowItWorksPage() {
                 <div className="hiw-step-inner" style={{ background: isDark ? '#141728' : '#fff', borderColor: c.border }}>
                   <div className="hiw-step-left">
                     <div className="hiw-icon-wrap" style={{ background: step.bg }}>
-                      <span style={{ fontSize: 26 }}>{step.icon}</span>
+                      <step.Icon size={24} color={step.color} strokeWidth={1.8} />
                     </div>
                     <div className="hiw-num" style={{ color: step.color }}>{step.num}</div>
                   </div>
@@ -222,7 +238,9 @@ export default function HowItWorksPage() {
           <div className="hiw-outcomes">
             {outcomes.map((o, i) => (
               <div key={o.title} className="hiw-outcome" style={{ background: isDark ? '#141728' : '#fff', borderColor: c.border, animationDelay: `${i * 70}ms` }}>
-                <span style={{ fontSize: 32, marginBottom: 12, display: 'block' }}>{o.icon}</span>
+                <div style={{ width: 48, height: 48, borderRadius: 14, background: o.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}>
+                  <o.Icon size={22} color={o.color} strokeWidth={1.8} />
+                </div>
                 <h3 style={{ color: c.text, fontSize: 16, fontWeight: 700, marginBottom: 6 }}>{o.title}</h3>
                 <p style={{ color: c.text2, fontSize: 13, lineHeight: 1.65 }}>{o.desc}</p>
               </div>
