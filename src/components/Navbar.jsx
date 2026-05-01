@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '../logo/NEUROXISE_LOGO.jpg'
 import { useLanguage } from '../i18n/LanguageContext'
@@ -39,6 +39,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [langOpen, setLangOpen] = useState(false)
   const [activeId, setActiveId] = useState('')
+  const langRootRef = useRef(null)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -48,9 +49,13 @@ export default function Navbar() {
 
   useEffect(() => {
     if (!langOpen) return
-    const close = () => setLangOpen(false)
-    window.addEventListener('click', close)
-    return () => window.removeEventListener('click', close)
+    const onPointerDown = e => {
+      if (langRootRef.current && !langRootRef.current.contains(e.target)) {
+        setLangOpen(false)
+      }
+    }
+    document.addEventListener('pointerdown', onPointerDown, true)
+    return () => document.removeEventListener('pointerdown', onPointerDown, true)
   }, [langOpen])
 
   useEffect(() => {
@@ -77,7 +82,7 @@ export default function Navbar() {
 
   return (
     <nav style={{
-      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: menuOpen ? 1000 : 100,
       transition: 'all 0.3s ease',
       background: navBg,
       backdropFilter: scrolled ? 'blur(16px)' : 'none',
@@ -118,6 +123,7 @@ export default function Navbar() {
 
           {/* Dark mode toggle */}
           <button
+            type="button"
             onClick={() => setIsDark(d => !d)}
             title={isDark ? 'Light mode' : 'Dark mode'}
             style={{
@@ -132,11 +138,12 @@ export default function Navbar() {
             {isDark ? <SunIcon /> : <MoonIcon />}
           </button>
 
-          {/* Language switcher: stopPropagation so document click does not close menu on inner clicks */}
+          {/* Desktop language dropdown (hidden on small screens; hamburger menu has RU/EN/UZ row) */}
           {/* eslint-disable-next-line jsx-a11y/no-static-element-interactions */}
-          <div style={{ position: 'relative' }} onMouseDown={e => e.stopPropagation()}>
+          <div ref={langRootRef} className="nav-lang-desktop" style={{ position: 'relative' }} onMouseDown={e => e.stopPropagation()}>
             <button
-              onClick={() => setLangOpen(o => !o)}
+              type="button"
+              onClick={e => { e.stopPropagation(); setLangOpen(o => !o) }}
               style={{
                 display: 'flex', alignItems: 'center', gap: 6,
                 padding: '8px 12px', borderRadius: 10,
@@ -165,8 +172,9 @@ export default function Navbar() {
               }}>
                 {LANGS.map(l => (
                   <button
+                    type="button"
                     key={l.code}
-                    onClick={() => { setLang(l.code); setLangOpen(false) }}
+                    onClick={e => { e.stopPropagation(); setLang(l.code); setLangOpen(false) }}
                     style={{
                       display: 'flex', alignItems: 'center', gap: 10,
                       width: '100%', padding: '11px 16px',
@@ -201,7 +209,7 @@ export default function Navbar() {
           <a href="#download" className="nav-cta">{t.nav.getApp}</a>
 
           {/* Hamburger */}
-          <button onClick={() => setMenuOpen(o => !o)} className="hamburger" aria-label="Menu">
+          <button type="button" onClick={() => setMenuOpen(o => !o)} className="hamburger" aria-label="Menu">
             <span className="bar" style={{ transform: menuOpen ? 'rotate(45deg) translateY(7px)' : 'none', background: c.text }} />
             <span className="bar" style={{ opacity: menuOpen ? 0 : 1, background: c.text }} />
             <span className="bar bar-short" style={{ transform: menuOpen ? 'rotate(-45deg) translateY(-7px)' : 'none', width: menuOpen ? 22 : 16, background: c.text }} />
@@ -220,22 +228,31 @@ export default function Navbar() {
         {/* Mobile lang + dark toggle */}
         <div style={{ display: 'flex', gap: 8, paddingTop: 14, paddingBottom: 4 }}>
           {LANGS.map(l => (
-            <button key={l.code} onClick={() => { setLang(l.code); setMenuOpen(false) }} style={{
-              flex: 1, padding: '9px 0', borderRadius: 10,
+            <button
+              type="button"
+              key={l.code}
+              className="mobile-lang-btn"
+              onClick={() => { setLang(l.code); setMenuOpen(false) }}
+              style={{
+              flex: 1, padding: '12px 4px', borderRadius: 10,
+              minHeight: 44,
               border: `2px solid ${lang === l.code ? '#3D52F5' : c.border}`,
               background: lang === l.code ? '#EEF0FF' : (isDark ? '#141728' : '#fff'),
               color: lang === l.code ? '#3D52F5' : c.text2,
               fontSize: 13, fontWeight: 700, cursor: 'pointer', fontFamily: 'inherit',
+              WebkitTapHighlightColor: 'transparent',
             }}>
               {l.label}
             </button>
           ))}
-          <button onClick={() => setIsDark(d => !d)} style={{
-            padding: '9px 12px', borderRadius: 10,
+          <button type="button" onClick={() => setIsDark(d => !d)} style={{
+            padding: '12px 14px', borderRadius: 10,
+            minHeight: 44, minWidth: 44,
             border: `2px solid ${c.border}`,
             background: isDark ? '#1A1D2E' : '#fff',
             color: isDark ? '#9DA8F5' : '#6B7080',
             cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+            WebkitTapHighlightColor: 'transparent',
           }}>
             {isDark ? <SunIcon /> : <MoonIcon />}
           </button>
@@ -307,11 +324,16 @@ export default function Navbar() {
         @media (max-width: 1050px) {
           .nav-links { gap: 16px; }
         }
+        .nav-lang-desktop { display: flex; align-items: center; }
+        .mobile-lang-btn { touch-action: manipulation; }
+
         @media (max-width: 900px) {
           .nav-links { display: none !important; }
           .hamburger { display: flex !important; }
-          .mobile-menu { display: block; }
+          .mobile-menu { display: block; position: relative; z-index: 5; }
+          .mobile-menu-open { overflow-y: auto; -webkit-overflow-scrolling: touch; }
           .nav-cta { display: none; }
+          .nav-lang-desktop { display: none !important; }
         }
       `}</style>
     </nav>
