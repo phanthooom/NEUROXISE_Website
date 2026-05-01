@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import logo from '../logo/NEUROXISE_LOGO.jpg'
 import { useLanguage } from '../i18n/LanguageContext'
 import { LanguagesIcon } from './Icons'
@@ -34,6 +34,7 @@ function SunIcon() {
 
 export default function Navbar() {
   const { lang, setLang, t, isDark, setIsDark } = useLanguage()
+  const location = useLocation()
   const c = mkC(isDark)
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
@@ -59,7 +60,7 @@ export default function Navbar() {
   }, [langOpen])
 
   useEffect(() => {
-    if (window.location.pathname !== '/') {
+    if (location.pathname !== '/') {
       setActiveId('')
       return
     }
@@ -70,7 +71,7 @@ export default function Navbar() {
     )
     sections.forEach(s => observer.observe(s))
     return () => observer.disconnect()
-  }, [])
+  }, [location.pathname])
 
   const navLinks = [
     { label: t.nav.features, to: '/features', scrollId: 'features' },
@@ -113,7 +114,7 @@ export default function Navbar() {
         {/* Desktop nav */}
         <div className="nav-links">
           {navLinks.map(l => {
-            const isActive = window.location.pathname === l.to || (window.location.pathname === '/' && activeId === l.scrollId)
+            const isActive = location.pathname === l.to || (location.pathname === '/' && activeId === l.scrollId)
             return (
               <a key={l.to} href={l.to} className={`nav-link${isActive ? ' nav-link-active' : ''}`}>
                 {l.label}

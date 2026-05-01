@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { LanguageProvider } from './i18n/LanguageContext.jsx'
 import App from './App.jsx'
 import PageLoader from './components/PageLoader.jsx'
+import PageTransition from './components/PageTransition.jsx'
 import './index.css'
 
 const NotFound = lazy(() => import('./pages/NotFound.jsx'))
@@ -40,7 +41,9 @@ function SuspenseNotFound() {
 function SuspenseLazyPage({ Page }) {
   return (
     <Suspense fallback={<PageLoader />}>
-      <Page />
+      <PageTransition>
+        <Page />
+      </PageTransition>
     </Suspense>
   )
 }
