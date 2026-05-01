@@ -11,6 +11,7 @@ const COPY = {
       'Коммерческие предложения и коллаборации — в письме кратко опишите идею и контакты ответственного лица.',
     ],
     emailHint: 'Пресса:',
+    mediaKit: ['Логотипы', 'Описание продукта', 'Комментарий команды'],
   },
   en: {
     badge: 'Press',
@@ -20,6 +21,7 @@ const COPY = {
       'For partnerships or commercial ideas, include a short brief and a contact person.',
     ],
     emailHint: 'Press inbox:',
+    mediaKit: ['Logos', 'Product brief', 'Team commentary'],
   },
   uz: {
     badge: 'Matbuot',
@@ -29,6 +31,7 @@ const COPY = {
       'Hamkorlik yoki tijoriy takliflar uchun qisqa tavsif va mas’ul shaxs kontaktlarini yozing.',
     ],
     emailHint: 'Matbuot pochtasi:',
+    mediaKit: ['Logotiplar', 'Mahsulot tavsifi', 'Jamoa izohi'],
   },
 }
 
@@ -50,6 +53,16 @@ export default function PressPage() {
           press@neuroxise.app
         </a>
       </p>
+      <div className="press-kit">
+        {t.mediaKit.map((item, i) => (
+          <span key={item} className="press-chip" style={{ animationDelay: `${i * 70}ms` }}>{item}</span>
+        ))}
+      </div>
+      <style>{`
+        .press-kit{display:flex;gap:10px;flex-wrap:wrap}
+        .press-chip{padding:8px 12px;border-radius:999px;background:${isDark ? 'rgba(61,82,245,.18)' : '#EEF0FF'};color:#3D52F5;font-weight:600;font-size:13px;animation:fadeUp .45s ease both}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+      `}</style>
     </SubPageLayout>
   )
 }

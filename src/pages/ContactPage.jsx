@@ -11,6 +11,7 @@ const COPY = {
       'Срочные медицинские вопросы этот канал не заменяет — обратитесь к своему врачу или в службу неотложной помощи.',
     ],
     primary: 'Общие запросы:',
+    channels: ['Почта', 'Партнёрства', 'Пресса'],
   },
   en: {
     badge: 'Contact',
@@ -20,6 +21,7 @@ const COPY = {
       'This channel is not for urgent medical issues—please contact your clinician or emergency services.',
     ],
     primary: 'General inquiries:',
+    channels: ['Email', 'Partnerships', 'Press'],
   },
   uz: {
     badge: 'Aloqa',
@@ -29,6 +31,7 @@ const COPY = {
       'Shoshilinch tibbiy masalalar uchun bu kanal o‘rin emas — shifokoringiz yoki tez yordam xizmatiga murojaat qiling.',
     ],
     primary: 'Umumiy savollar:',
+    channels: ['Email', 'Hamkorlik', 'Matbuot'],
   },
 }
 
@@ -50,6 +53,16 @@ export default function ContactPage() {
           hello@neuroxise.app
         </a>
       </p>
+      <div className="contact-row">
+        {t.channels.map((item, i) => (
+          <div key={item} className="contact-pill" style={{ animationDelay: `${i * 80}ms` }}>{item}</div>
+        ))}
+      </div>
+      <style>{`
+        .contact-row{display:flex;gap:10px;flex-wrap:wrap}
+        .contact-pill{padding:8px 12px;border-radius:999px;background:${isDark ? 'rgba(61,82,245,.18)' : '#EEF0FF'};color:#3D52F5;font-weight:600;font-size:13px;animation:fadeUp .45s ease both}
+        @keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+      `}</style>
     </SubPageLayout>
   )
 }
