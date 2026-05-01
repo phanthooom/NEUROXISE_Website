@@ -31,7 +31,9 @@ export default function NotFound() {
           <img
             src={logo}
             alt="NEUROXISE"
+            loading="eager"
             decoding="async"
+            fetchPriority="high"
             style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover' }}
           />
           <span style={{ fontSize: 18, fontWeight: 700, color: c.text, letterSpacing: '-0.3px' }}>

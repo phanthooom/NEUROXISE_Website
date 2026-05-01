@@ -1,26 +1,26 @@
-import { lazy, Suspense, useEffect } from 'react'
+import { useEffect } from 'react'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Footer from './components/Footer'
 import BackToTop from './components/BackToTop'
-import SectionSkeleton from './components/SectionSkeleton'
+import LazySection from './components/LazySection'
 
-const Features = lazy(() => import('./components/Features'))
-const HowItWorks = lazy(() => import('./components/HowItWorks'))
-const Exercises = lazy(() => import('./components/Exercises'))
-const Stats = lazy(() => import('./components/Stats'))
-const Pricing = lazy(() => import('./components/Pricing'))
-const FAQ = lazy(() => import('./components/FAQ'))
-const Download = lazy(() => import('./components/Download'))
+const loadFeatures = () => import('./components/Features')
+const loadHowItWorks = () => import('./components/HowItWorks')
+const loadExercises = () => import('./components/Exercises')
+const loadStats = () => import('./components/Stats')
+const loadPricing = () => import('./components/Pricing')
+const loadFaq = () => import('./components/FAQ')
+const loadDownload = () => import('./components/Download')
 
 const SECTIONS = [
-  { id: 'features', Component: Features },
-  { id: 'how-it-works', Component: HowItWorks },
-  { id: 'exercises', Component: Exercises },
-  { id: 'stats', Component: Stats },
-  { id: 'pricing', Component: Pricing },
-  { id: 'faq', Component: FAQ },
-  { id: 'download', Component: Download },
+  { id: 'features', load: loadFeatures },
+  { id: 'how-it-works', load: loadHowItWorks },
+  { id: 'exercises', load: loadExercises },
+  { id: 'stats', load: loadStats },
+  { id: 'pricing', load: loadPricing },
+  { id: 'faq', load: loadFaq },
+  { id: 'download', load: loadDownload },
 ]
 
 export default function App() {
@@ -44,12 +44,8 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
-        {SECTIONS.map(({ id, Component }) => (
-          <div key={id} className="reveal-section">
-            <Suspense fallback={<SectionSkeleton sectionId={id} />}>
-              <Component />
-            </Suspense>
-          </div>
+        {SECTIONS.map(({ id, load }) => (
+          <LazySection key={id} load={load} className="reveal-section" rootMargin="300px" />
         ))}
       </main>
       <Footer />
