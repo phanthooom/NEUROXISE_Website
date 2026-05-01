@@ -8,6 +8,11 @@ import './index.css'
 
 const NotFound = lazy(() => import('./pages/NotFound.jsx'))
 const LegalPage = lazy(() => import('./pages/LegalPage.jsx'))
+const AboutPage = lazy(() => import('./pages/AboutPage.jsx'))
+const BlogPage = lazy(() => import('./pages/BlogPage.jsx'))
+const CareersPage = lazy(() => import('./pages/CareersPage.jsx'))
+const PressPage = lazy(() => import('./pages/PressPage.jsx'))
+const ContactPage = lazy(() => import('./pages/ContactPage.jsx'))
 
 function SuspenseLegal({ slug }) {
   return (
@@ -25,6 +30,14 @@ function SuspenseNotFound() {
   )
 }
 
+function SuspenseLazyPage({ Page }) {
+  return (
+    <Suspense fallback={<PageLoader />}>
+      <Page />
+    </Suspense>
+  )
+}
+
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <LanguageProvider>
@@ -34,11 +47,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/privacy" element={<SuspenseLegal slug="privacy" />} />
           <Route path="/terms" element={<SuspenseLegal slug="terms" />} />
           <Route path="/cookies" element={<SuspenseLegal slug="cookies" />} />
-          <Route path="/about" element={<SuspenseLegal slug="placeholder" />} />
-          <Route path="/blog" element={<SuspenseLegal slug="placeholder" />} />
-          <Route path="/careers" element={<SuspenseLegal slug="placeholder" />} />
-          <Route path="/press" element={<SuspenseLegal slug="placeholder" />} />
-          <Route path="/contact" element={<SuspenseLegal slug="placeholder" />} />
+          <Route path="/about" element={<SuspenseLazyPage Page={AboutPage} />} />
+          <Route path="/blog" element={<SuspenseLazyPage Page={BlogPage} />} />
+          <Route path="/careers" element={<SuspenseLazyPage Page={CareersPage} />} />
+          <Route path="/press" element={<SuspenseLazyPage Page={PressPage} />} />
+          <Route path="/contact" element={<SuspenseLazyPage Page={ContactPage} />} />
           <Route path="*" element={<SuspenseNotFound />} />
         </Routes>
       </BrowserRouter>
