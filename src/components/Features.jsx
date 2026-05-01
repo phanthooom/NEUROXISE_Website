@@ -17,7 +17,7 @@ export default function Features() {
   const c = mkC(isDark)
 
   return (
-    <section id="features" style={{ padding: '96px 0', background: c.pageBg }}>
+    <section style={{ padding: '96px 0', background: c.pageBg }}>
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: 60 }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: c.badge, borderRadius: 999, padding: '6px 14px', marginBottom: 16 }}>

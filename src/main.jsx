@@ -13,6 +13,9 @@ const BlogPage = lazy(() => import('./pages/BlogPage.jsx'))
 const CareersPage = lazy(() => import('./pages/CareersPage.jsx'))
 const PressPage = lazy(() => import('./pages/PressPage.jsx'))
 const ContactPage = lazy(() => import('./pages/ContactPage.jsx'))
+const HelpPage = lazy(() => import('./pages/HelpPage.jsx'))
+const DownloadPage = lazy(() => import('./pages/DownloadPage.jsx'))
+const PricingPage = lazy(() => import('./pages/PricingPage.jsx'))
 
 function SuspenseLegal({ slug }) {
   return (
@@ -52,6 +55,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path="/careers" element={<SuspenseLazyPage Page={CareersPage} />} />
           <Route path="/press" element={<SuspenseLazyPage Page={PressPage} />} />
           <Route path="/contact" element={<SuspenseLazyPage Page={ContactPage} />} />
+          <Route path="/help" element={<SuspenseLazyPage Page={HelpPage} />} />
+          <Route path="/download" element={<SuspenseLazyPage Page={DownloadPage} />} />
+          <Route path="/pricing" element={<SuspenseLazyPage Page={PricingPage} />} />
           <Route path="*" element={<SuspenseNotFound />} />
         </Routes>
       </BrowserRouter>

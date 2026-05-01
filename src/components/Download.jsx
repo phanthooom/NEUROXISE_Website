@@ -8,7 +8,7 @@ export default function Download() {
   const d = t.download
 
   return (
-    <section id="download" style={{ padding: '96px 0', background: '#fff' }}>
+    <section style={{ padding: '96px 0', background: '#fff' }}>
       <div className="container">
         <div className="download-card">
           <div style={{ position: 'absolute', top: -80, right: '28%', width: 300, height: 300, borderRadius: '50%', background: 'rgba(255,255,255,0.06)', pointerEvents: 'none' }} />

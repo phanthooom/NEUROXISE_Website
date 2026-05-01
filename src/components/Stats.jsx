@@ -46,7 +46,7 @@ export default function Stats() {
   const displayVals = [c0, c1, c2, 4.8]
 
   return (
-    <section id="stats" ref={ref} style={{
+    <section ref={ref} style={{
       padding: '96px 0',
       background: 'linear-gradient(160deg, #1A1D2E 0%, #2A2D4E 50%, #1A1D2E 100%)',
       position: 'relative', overflow: 'hidden',

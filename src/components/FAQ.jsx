@@ -9,7 +9,7 @@ export default function FAQ() {
   const [open, setOpen] = useState(null)
 
   return (
-    <section id="faq" style={{ padding: '96px 0', background: c.pageBg }}>
+    <section style={{ padding: '96px 0', background: c.pageBg }}>
       <div className="container">
 
         {/* Header */}

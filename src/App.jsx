@@ -1,8 +1,7 @@
 import { useEffect } from 'react'
-import Navbar from './components/Navbar'
+import { useLocation } from 'react-router-dom'
+import SiteChrome from './layouts/SiteChrome'
 import Hero from './components/Hero'
-import Footer from './components/Footer'
-import BackToTop from './components/BackToTop'
 import LazySection from './components/LazySection'
 
 const loadFeatures = () => import('./components/Features')
@@ -24,6 +23,20 @@ const SECTIONS = [
 ]
 
 export default function App() {
+  const location = useLocation()
+
+  useEffect(() => {
+    if (location.pathname !== '/') return
+    const raw = location.hash
+    if (!raw || raw.length < 2) return
+    const id = raw.slice(1)
+    const t = window.requestAnimationFrame(() => {
+      const el = document.getElementById(id)
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    })
+    return () => window.cancelAnimationFrame(t)
+  }, [location.pathname, location.hash])
+
   useEffect(() => {
     const els = document.querySelectorAll('.reveal-section')
     const observer = new IntersectionObserver(
@@ -40,16 +53,11 @@ export default function App() {
   }, [])
 
   return (
-    <>
-      <Navbar />
-      <main>
-        <Hero />
-        {SECTIONS.map(({ id, load }) => (
-          <LazySection key={id} load={load} className="reveal-section" rootMargin="300px" />
-        ))}
-      </main>
-      <Footer />
-      <BackToTop />
+    <SiteChrome>
+      <Hero />
+      {SECTIONS.map(({ id, load }) => (
+        <LazySection key={id} id={id} load={load} className="reveal-section" rootMargin="300px" />
+      ))}
 
       <style>{`
         .reveal-section {
@@ -62,6 +70,6 @@ export default function App() {
           transform: translateY(0);
         }
       `}</style>
-    </>
+    </SiteChrome>
   )
 }

@@ -206,7 +206,7 @@ export default function Navbar() {
             )}
           </div>
 
-          <a href="#download" className="nav-cta">{t.nav.getApp}</a>
+          <Link to="/download" className="nav-cta">{t.nav.getApp}</Link>
 
           {/* Hamburger */}
           <button type="button" onClick={() => setMenuOpen(o => !o)} className="hamburger" aria-label="Menu">
@@ -258,9 +258,9 @@ export default function Navbar() {
           </button>
         </div>
 
-        <a href="#download" className="mobile-cta" onClick={() => setMenuOpen(false)}>
+        <Link to="/download" className="mobile-cta" onClick={() => setMenuOpen(false)}>
           {t.nav.getApp} →
-        </a>
+        </Link>
       </div>
 
       <style>{`

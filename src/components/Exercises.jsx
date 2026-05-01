@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
 import { BrainIcon, MicIcon, EyeIcon, BookOpenIcon, CheckSquareIcon } from './Icons'
 import { mkC } from '../theme'
@@ -23,7 +24,7 @@ export default function Exercises() {
   const getDiffBg    = (diff) => diffBg[diff]    || diffBg[ex.diff[diff]]    || '#F5F6FA'
 
   return (
-    <section id="exercises" style={{ padding: '96px 0', background: c.pageBg }}>
+    <section style={{ padding: '96px 0', background: c.pageBg }}>
       <div className="container">
         <div style={{ textAlign: 'center', marginBottom: 56 }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: c.badge, borderRadius: 999, padding: '6px 14px', marginBottom: 16 }}>
@@ -71,7 +72,7 @@ export default function Exercises() {
             </div>
             <h3 style={{ fontSize: 26, fontWeight: 800, color: c.text, marginBottom: 12 }}>{cat.key}</h3>
             <p style={{ fontSize: 15, color: c.text2, lineHeight: 1.7, marginBottom: 28 }}>{cat.desc}</p>
-            <a href="#download" style={{
+            <Link to="/download" style={{
               display: 'inline-flex', alignItems: 'center', gap: 8,
               background: cat.color, color: '#fff', fontSize: 15, fontWeight: 600,
               padding: '12px 24px', borderRadius: 12, transition: 'all 0.2s', textDecoration: 'none',
@@ -80,7 +81,7 @@ export default function Exercises() {
               onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
             >
               {ex.tryBtn} {cat.key}
-            </a>
+            </Link>
           </div>
 
           <div className="cat-detail-right">

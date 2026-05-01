@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
 import { mkC } from '../theme'
 
@@ -16,7 +17,7 @@ export default function Pricing() {
   const c = mkC(isDark)
 
   return (
-    <section id="pricing" style={{ padding: '96px 0', background: c.pageBg2 }}>
+    <section style={{ padding: '96px 0', background: c.pageBg2 }}>
       <div className="container">
 
         {/* Header */}
@@ -87,7 +88,7 @@ export default function Pricing() {
                   ))}
                 </ul>
 
-                <a href="#download" className={isPro ? 'pricing-btn-primary' : 'pricing-btn-outline'} style={{ marginTop: 28 }}>
+                <Link to="/download" className={isPro ? 'pricing-btn-primary' : 'pricing-btn-outline'} style={{ marginTop: 28 }}>
                   {plan.cta}
                   {isPro && (
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
@@ -95,7 +96,7 @@ export default function Pricing() {
                       <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
                   )}
-                </a>
+                </Link>
               </div>
             )
           })}

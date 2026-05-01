@@ -7,8 +7,9 @@ import SectionPlaceholder from './SectionPlaceholder'
  * @param {() => Promise<{ default: import('react').ComponentType}>} load — stable import function (module scope).
  * @param {string} [rootMargin='300px']
  * @param {string} [className]
+ * @param {string} [id] — scroll target for /#id (must exist before lazy chunk loads)
  */
-export default function LazySection({ load, rootMargin = '300px', className = '' }) {
+export default function LazySection({ load, rootMargin = '300px', className = '', id }) {
   const [shouldLoad, setShouldLoad] = useState(false)
   const rootRef = useRef(null)
   const LazyComponent = useMemo(() => lazy(load), [load])
@@ -32,7 +33,7 @@ export default function LazySection({ load, rootMargin = '300px', className = ''
   }, [rootMargin, shouldLoad])
 
   return (
-    <div ref={rootRef} className={className}>
+    <section ref={rootRef} id={id} className={className}>
       {shouldLoad ? (
         <Suspense fallback={<PageLoader />}>
           <LazyComponent />
@@ -40,6 +41,6 @@ export default function LazySection({ load, rootMargin = '300px', className = ''
       ) : (
         <SectionPlaceholder />
       )}
-    </div>
+    </section>
   )
 }
