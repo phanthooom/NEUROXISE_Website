@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useLanguage } from '../i18n/LanguageContext'
 import { mkC } from '../theme'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 const DOCS = {
   ru: {
@@ -109,6 +110,7 @@ export default function LegalPage({ slug }) {
   const c = mkC(isDark)
   const locale = DOCS[lang] || DOCS.ru
   const doc = locale[slug] || locale.placeholder
+  usePageMeta(doc.title)
 
   return (
     <div

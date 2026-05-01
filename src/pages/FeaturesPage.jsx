@@ -2,6 +2,7 @@ import SiteChrome from '../layouts/SiteChrome'
 import { useLanguage } from '../i18n/LanguageContext'
 import { mkC } from '../theme'
 import { TargetIcon, BarChartIcon, GamepadIcon, GlobeIcon, ShieldIcon, ActivityIcon, CheckCircleIcon } from '../components/Icons'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 const FEATURE_META = [
   { Icon: TargetIcon,   color: '#3D52F5', bg: '#EEF0FF' },
@@ -163,6 +164,7 @@ export default function FeaturesPage() {
   const { lang, isDark } = useLanguage()
   const c = mkC(isDark)
   const t = UI[lang] || UI.ru
+  usePageMeta(t.badge, t.subtitle)
 
   return (
     <SiteChrome>

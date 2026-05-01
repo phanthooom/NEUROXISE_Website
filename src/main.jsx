@@ -5,6 +5,7 @@ import { LanguageProvider } from './i18n/LanguageContext.jsx'
 import App from './App.jsx'
 import PageLoader from './components/PageLoader.jsx'
 import PageTransition from './components/PageTransition.jsx'
+import ScrollToTop from './components/ScrollToTop.jsx'
 import './index.css'
 
 const NotFound = lazy(() => import('./pages/NotFound.jsx'))
@@ -52,6 +53,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <LanguageProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/privacy" element={<SuspenseLegal slug="privacy" />} />

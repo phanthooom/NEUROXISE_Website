@@ -2,6 +2,7 @@ import SiteChrome from '../layouts/SiteChrome'
 import { useLanguage } from '../i18n/LanguageContext'
 import { mkC } from '../theme'
 import { TargetIcon, LayersIcon, FlameIcon, BarChartIcon, RefreshIcon, BrainIcon, MicIcon, CrosshairIcon, TrendingUpIcon } from '../components/Icons'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 const STEP_META = [
   { Icon: TargetIcon,   color: '#3D52F5', bg: '#EEF0FF' },
@@ -193,6 +194,7 @@ export default function HowItWorksPage() {
   const { lang, isDark } = useLanguage()
   const c = mkC(isDark)
   const t = UI[lang] || UI.ru
+  usePageMeta(t.badge, t.subtitle)
   const steps = (STEPS[lang] || STEPS.ru).map((s, i) => ({ ...s, ...STEP_META[i] }))
   const outcomes = (OUTCOMES[lang] || OUTCOMES.ru).map((o, i) => ({ ...o, ...OUTCOME_META[i] }))
 

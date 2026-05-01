@@ -2,6 +2,7 @@ import SiteChrome from '../layouts/SiteChrome'
 import { useLanguage } from '../i18n/LanguageContext'
 import { mkC } from '../theme'
 import { BrainIcon, MicIcon, EyeIcon, GlobeIcon, LayersIcon, CrosshairIcon } from '../components/Icons'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 const CATS = {
   ru: [
@@ -212,6 +213,7 @@ export default function ExercisesPage() {
   const { lang, isDark } = useLanguage()
   const c = mkC(isDark)
   const t = UI[lang] || UI.ru
+  usePageMeta(t.badge, t.subtitle)
   const cats = CATS[lang] || CATS.ru
 
   return (

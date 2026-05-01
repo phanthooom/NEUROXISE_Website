@@ -1,6 +1,7 @@
 import SiteChrome from '../layouts/SiteChrome'
 import { useLanguage } from '../i18n/LanguageContext'
 import { mkC } from '../theme'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 const COPY = {
   ru: {
@@ -42,6 +43,7 @@ export default function PricingPage() {
   const { lang, isDark } = useLanguage()
   const c = mkC(isDark)
   const t = COPY[lang] || COPY.ru
+  usePageMeta(t.badge, t.subtitle)
 
   return (
     <SiteChrome>

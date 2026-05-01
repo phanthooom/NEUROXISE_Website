@@ -2,6 +2,7 @@ import { useState } from 'react'
 import SiteChrome from '../layouts/SiteChrome'
 import { useLanguage } from '../i18n/LanguageContext'
 import { mkC } from '../theme'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 const FAQ = {
   ru: [
@@ -74,6 +75,7 @@ export default function HelpPage() {
   const { lang, isDark } = useLanguage()
   const c = mkC(isDark)
   const t = UI[lang] || UI.ru
+  usePageMeta(t.badge, t.subtitle)
   const allFaq = FAQ[lang] || FAQ.ru
 
   const cats = [t.allCat, ...Array.from(new Set(allFaq.map(f => f.cat)))]

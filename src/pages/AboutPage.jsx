@@ -2,6 +2,7 @@ import SiteChrome from '../layouts/SiteChrome'
 import { useLanguage } from '../i18n/LanguageContext'
 import { mkC } from '../theme'
 import { BrainIcon, TargetIcon, ActivityIcon, CheckCircleIcon, UsersIcon, ShieldIcon } from '../components/Icons'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 const VALUE_META = [
   { Icon: BrainIcon,    color: '#3D52F5', bg: '#EEF0FF' },
@@ -103,6 +104,7 @@ export default function AboutPage() {
   const { lang, isDark } = useLanguage()
   const c = mkC(isDark)
   const t = UI[lang] || UI.ru
+  usePageMeta(t.badge, t.heroSub)
 
   return (
     <SiteChrome>

@@ -3,6 +3,7 @@ import SiteChrome from '../layouts/SiteChrome'
 import { useLanguage } from '../i18n/LanguageContext'
 import { mkC } from '../theme'
 import { SmartphoneIcon, CheckCircleIcon, ShieldIcon, FlameIcon } from '../components/Icons'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 const UI = {
   ru: {
@@ -86,6 +87,7 @@ export default function DownloadPage() {
   const { lang, isDark } = useLanguage()
   const c = mkC(isDark)
   const t = UI[lang] || UI.ru
+  usePageMeta(t.badge, t.subtitle)
 
   const [email, setEmail] = useState('')
   const [sent, setSent] = useState(false)

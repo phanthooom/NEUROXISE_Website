@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import SiteChrome from '../layouts/SiteChrome'
 import { useLanguage } from '../i18n/LanguageContext'
 import { mkC } from '../theme'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 function useCountUp(end, duration, trigger, isFloat) {
   const [val, setVal] = useState(0)
@@ -106,6 +107,7 @@ export default function StatsPage() {
   const { lang, isDark } = useLanguage()
   const c = mkC(isDark)
   const t = UI[lang] || UI.ru
+  usePageMeta(t.badge, t.subtitle)
   const metrics = METRICS[lang] || METRICS.en
   const skills = SKILLS[lang] || SKILLS.en
 

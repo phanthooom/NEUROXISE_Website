@@ -1,6 +1,7 @@
 import SiteChrome from '../layouts/SiteChrome'
 import { useLanguage } from '../i18n/LanguageContext'
 import { mkC } from '../theme'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 const ARTICLES = {
   ru: [
@@ -183,6 +184,7 @@ export default function BlogPage() {
   const { lang, isDark } = useLanguage()
   const c = mkC(isDark)
   const t = UI[lang] || UI.ru
+  usePageMeta(t.badge, t.subtitle)
   const articles = ARTICLES[lang] || ARTICLES.ru
 
   return (

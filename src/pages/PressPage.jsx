@@ -2,6 +2,7 @@ import SiteChrome from '../layouts/SiteChrome'
 import { useLanguage } from '../i18n/LanguageContext'
 import { mkC } from '../theme'
 import { TagIcon, BookOpenIcon, ImageIcon, UserIcon } from '../components/Icons'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 const KIT_META = [
   { Icon: TagIcon,      color: '#3D52F5', bg: '#EEF0FF' },
@@ -92,6 +93,7 @@ export default function PressPage() {
   const { lang, isDark } = useLanguage()
   const c = mkC(isDark)
   const t = UI[lang] || UI.ru
+  usePageMeta(t.badge, t.subtitle)
 
   return (
     <SiteChrome>

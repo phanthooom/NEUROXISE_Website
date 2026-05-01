@@ -1,6 +1,7 @@
 import SiteChrome from '../layouts/SiteChrome'
 import { useLanguage } from '../i18n/LanguageContext'
 import { mkC } from '../theme'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 const ROLES = {
   ru: [
@@ -68,6 +69,7 @@ export default function CareersPage() {
   const { lang, isDark } = useLanguage()
   const c = mkC(isDark)
   const t = UI[lang] || UI.ru
+  usePageMeta(t.badge, t.subtitle)
   const roles = ROLES[lang] || ROLES.ru
   const values = VALUES[lang] || VALUES.ru
 
@@ -149,6 +151,7 @@ export default function CareersPage() {
         .cr-open-btn:hover{background:#2B40D4}
         @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
         @media(max-width:960px){.cr-hero{grid-template-columns:1fr}.cr-roles{grid-template-columns:1fr}}
+        @media(max-width:480px){.cr-hero{padding:22px 18px;border-radius:18px}.cr-role{padding:18px}.cr-open{padding:18px 20px;border-radius:16px}}
       `}</style>
     </SiteChrome>
   )

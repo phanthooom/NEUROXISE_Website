@@ -3,6 +3,7 @@ import SiteChrome from '../layouts/SiteChrome'
 import { useLanguage } from '../i18n/LanguageContext'
 import { mkC } from '../theme'
 import { MailIcon, UsersIcon, NewspaperIcon } from '../components/Icons'
+import { usePageMeta } from '../hooks/usePageMeta'
 
 const CHANNEL_META = [
   { Icon: MailIcon,      color: '#3D52F5', bg: '#EEF0FF' },
@@ -83,6 +84,7 @@ export default function ContactPage() {
   const { lang, isDark } = useLanguage()
   const c = mkC(isDark)
   const t = UI[lang] || UI.ru
+  usePageMeta(t.badge, t.subtitle)
   const f = t.fields
 
   const [form, setForm] = useState({ name: '', email: '', topic: f.topicOptions[0], message: '' })
