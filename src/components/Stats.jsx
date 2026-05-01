@@ -25,7 +25,6 @@ const STAT_META = [
   { value: 4.8,   suffix: '★', Icon: StarIcon,     color: '#F5A623', isFloat: true },
 ]
 
-const AVATAR_COLORS = ['#3D52F5', '#34C48C', '#9B59F5']
 
 export default function Stats() {
   const { t } = useLanguage()
@@ -84,41 +83,6 @@ export default function Stats() {
           ))}
         </div>
 
-        <div style={{ textAlign: 'center', margin: '80px 0 40px' }}>
-          <h2 style={{ fontSize: 'clamp(26px, 3.5vw, 40px)', fontWeight: 800, color: '#fff', letterSpacing: '-0.6px', marginBottom: 10 }}>
-            {s.testimonialsTitle}
-          </h2>
-          <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.45)' }}>{s.testimonialsSubtitle}</p>
-        </div>
-
-        <div className="testimonials-grid">
-          {s.testimonials.map((t_, i) => (
-            <div key={i} className="testimonial-card">
-              <div style={{ display: 'flex', gap: 3, marginBottom: 16, alignItems: 'center' }}>
-                {[1,2,3,4,5].map(n => (
-                  <StarIcon key={n} size={14} color="#F5A623" strokeWidth={0} filled />
-                ))}
-              </div>
-              <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.72)', lineHeight: 1.7, marginBottom: 20 }}>
-                <q style={{ quotes: '" "' }}>{t_.text}</q>
-              </p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                <div style={{
-                  width: 40, height: 40, borderRadius: '50%',
-                  background: `linear-gradient(135deg, ${AVATAR_COLORS[i]}, #9DA8F5)`,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontSize: 15, fontWeight: 700, color: '#fff', flexShrink: 0,
-                }}>
-                  {t_.name[0]}
-                </div>
-                <div>
-                  <div style={{ fontSize: 14, fontWeight: 700, color: '#fff' }}>{t_.name}</div>
-                  <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)' }}>{t_.role}</div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
       </div>
 
       <style>{`
@@ -134,16 +98,8 @@ export default function Stats() {
         }
         .stat-card:hover { background: rgba(255,255,255,0.08); transform: translateY(-4px); }
 
-        .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-        .testimonial-card {
-          background: rgba(255,255,255,0.05); border-radius: 20px; padding: 28px;
-          border: 1px solid rgba(255,255,255,0.08); backdrop-filter: blur(10px); transition: all 0.3s;
-        }
-        .testimonial-card:hover { background: rgba(255,255,255,0.09); transform: translateY(-2px); }
-
         @media (max-width: 900px) {
-          .stats-grid        { grid-template-columns: repeat(2, 1fr); }
-          .testimonials-grid { grid-template-columns: 1fr; }
+          .stats-grid { grid-template-columns: repeat(2, 1fr); }
         }
         @media (max-width: 480px) {
           .stats-grid { gap: 12px; }
