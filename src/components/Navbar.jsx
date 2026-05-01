@@ -91,7 +91,6 @@ export default function Navbar() {
           <img
             src={logo}
             alt="NEUROXISE"
-            fetchPriority="high"
             decoding="async"
             style={{ width: 38, height: 38, borderRadius: '50%', objectFit: 'cover' }}
           />
