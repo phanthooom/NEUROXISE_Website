@@ -1,6 +1,6 @@
-/** Internal routes and anchors — avoid href="#" (OWASP passive review). */
+/** Internal routes; product links use dedicated pages (not bare href="#"). */
 
-const PRODUCT_PATHS = ['/#features', '/#exercises', '/#stats', '/pricing']
+const PRODUCT_PATHS = ['/features', '/exercises', '/stats', '/pricing']
 
 const COMPANY_PATHS = ['/about', '/blog', '/careers', '/press']
 
@@ -16,7 +16,7 @@ const COMMUNITY_URLS = [
 const LEGAL_PATHS = ['/privacy', '/terms', '/cookies']
 
 export function getFooterColumnHref(sectionKey, index) {
-  if (sectionKey === 'Product') return PRODUCT_PATHS[index] || '/#features'
+  if (sectionKey === 'Product') return PRODUCT_PATHS[index] || '/features'
   if (sectionKey === 'Company') return COMPANY_PATHS[index] || '/about'
   if (sectionKey === 'Support') return SUPPORT_PATHS[index] || '/contact'
   if (sectionKey === 'Community') return COMMUNITY_URLS[index] || 'https://x.com/'

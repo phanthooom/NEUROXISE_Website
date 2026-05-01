@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import logo from '../logo/NEUROXISE_LOGO.jpg'
 import { useLanguage } from '../i18n/LanguageContext'
 import { LanguagesIcon } from './Icons'
@@ -33,6 +33,7 @@ function SunIcon() {
 }
 
 export default function Navbar() {
+  const location = useLocation()
   const { lang, setLang, t, isDark, setIsDark } = useLanguage()
   const c = mkC(isDark)
   const [scrolled, setScrolled] = useState(false)
@@ -59,6 +60,10 @@ export default function Navbar() {
   }, [langOpen])
 
   useEffect(() => {
+    if (location.pathname !== '/') {
+      setActiveId('')
+      return
+    }
     const sections = document.querySelectorAll('section[id]')
     const observer = new IntersectionObserver(
       entries => entries.forEach(e => { if (e.isIntersecting) setActiveId(e.target.id) }),
@@ -66,14 +71,14 @@ export default function Navbar() {
     )
     sections.forEach(s => observer.observe(s))
     return () => observer.disconnect()
-  }, [])
+  }, [location.pathname])
 
   const navLinks = [
-    { label: t.nav.features, href: '#features' },
-    { label: t.nav.howItWorks, href: '#how-it-works' },
-    { label: t.nav.exercises, href: '#exercises' },
-    { label: t.nav.stats, href: '#stats' },
-    { label: t.nav.pricing, href: '#pricing' },
+    { label: t.nav.features, to: '/features', scrollId: 'features' },
+    { label: t.nav.howItWorks, to: '/how-it-works', scrollId: 'how-it-works' },
+    { label: t.nav.exercises, to: '/exercises', scrollId: 'exercises' },
+    { label: t.nav.stats, to: '/stats', scrollId: 'stats' },
+    { label: t.nav.pricing, to: '/pricing', scrollId: 'pricing' },
   ]
 
   const currentLang = LANGS.find(l => l.code === lang)
@@ -109,11 +114,11 @@ export default function Navbar() {
         {/* Desktop nav */}
         <div className="nav-links">
           {navLinks.map(l => {
-            const isActive = activeId === l.href.replace('#', '')
+            const isActive = location.pathname === l.to || (location.pathname === '/' && activeId === l.scrollId)
             return (
-              <a key={l.href} href={l.href} className={`nav-link${isActive ? ' nav-link-active' : ''}`}>
+              <Link key={l.to} to={l.to} className={`nav-link${isActive ? ' nav-link-active' : ''}`}>
                 {l.label}
-              </a>
+              </Link>
             )
           })}
         </div>
@@ -220,9 +225,9 @@ export default function Navbar() {
       {/* Mobile menu */}
       <div className={`mobile-menu ${menuOpen ? 'mobile-menu-open' : ''}`}>
         {navLinks.map(l => (
-          <a key={l.href} href={l.href} className="mobile-link" onClick={() => setMenuOpen(false)}>
+          <Link key={l.to} to={l.to} className="mobile-link" onClick={() => setMenuOpen(false)}>
             {l.label}
-          </a>
+          </Link>
         ))}
 
         {/* Mobile lang + dark toggle */}
