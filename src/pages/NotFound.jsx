@@ -5,8 +5,8 @@ import { mkC } from '../theme'
 
 const labels = {
   ru: { code: '404', title: 'Страница не найдена', desc: 'Кажется, такой страницы не существует. Вернитесь на главную и продолжите тренировку.', btn: 'На главную' },
-  en: { code: '404', title: 'Page Not Found',      desc: "Looks like this page doesn't exist. Head back to the home page and keep training.", btn: 'Back to Home' },
-  uz: { code: '404', title: 'Sahifa topilmadi',    desc: "Bu sahifa mavjud emas. Bosh sahifaga qayting va mashqni davom ettiring.", btn: 'Bosh sahifaga' },
+  en: { code: '404', title: 'Page Not Found', desc: "Looks like this page doesn't exist. Head back to the home page and keep training.", btn: 'Back to Home' },
+  uz: { code: '404', title: 'Sahifa topilmadi', desc: "Bu sahifa mavjud emas. Bosh sahifaga qayting va mashqni davom ettiring.", btn: 'Bosh sahifaga' },
 }
 
 export default function NotFound() {
@@ -28,7 +28,12 @@ export default function NotFound() {
 
         {/* Logo */}
         <a href="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, textDecoration: 'none', marginBottom: 48 }}>
-          <img src={logo} alt="NEUROXISE" style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover' }} />
+          <img
+            src={logo}
+            alt="NEUROXISE"
+            decoding="async"
+            style={{ width: 36, height: 36, borderRadius: '50%', objectFit: 'cover' }}
+          />
           <span style={{ fontSize: 18, fontWeight: 700, color: c.text, letterSpacing: '-0.3px' }}>
             NEURO<span style={{ color: '#3D52F5' }}>XISE</span>
           </span>

@@ -100,7 +100,7 @@ export default function Stats() {
                 ))}
               </div>
               <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.72)', lineHeight: 1.7, marginBottom: 20 }}>
-                "{t_.text}"
+                <q style={{ quotes: '" "' }}>{t_.text}</q>
               </p>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                 <div style={{

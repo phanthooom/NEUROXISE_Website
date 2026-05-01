@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom'
 import logo from '../logo/NEUROXISE_LOGO.jpg'
 import { useLanguage } from '../i18n/LanguageContext'
+import { getFooterColumnHref, getLegalHref, isFooterExternalUrl } from '../lib/footerLinks'
 
 export default function Footer() {
   const { t } = useLanguage()
@@ -14,7 +16,13 @@ export default function Footer() {
           {/* Brand */}
           <div className="footer-brand">
             <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-              <img src={logo} alt="NEUROXISE" style={{ width: 38, height: 38, borderRadius: '50%', objectFit: 'cover' }} />
+              <img
+                src={logo}
+                alt="NEUROXISE"
+                loading="lazy"
+                decoding="async"
+                style={{ width: 38, height: 38, borderRadius: '50%', objectFit: 'cover' }}
+              />
               <span style={{ fontSize: 18, fontWeight: 700, color: '#fff', letterSpacing: '-0.3px' }}>
                 NEURO<span style={{ color: '#9DA8F5' }}>XISE</span>
               </span>
@@ -35,11 +43,29 @@ export default function Footer() {
                 {f.sections[key]}
               </div>
               <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 10 }}>
-                {f.links[key].map((item, i) => (
-                  <li key={i}>
-                    <a href="#" className="footer-link">{item}</a>
-                  </li>
-                ))}
+                {f.links[key].map((item, i) => {
+                  const href = getFooterColumnHref(key, i)
+                  const external = isFooterExternalUrl(key)
+                  if (external) {
+                    return (
+                      <li key={i}>
+                        <a
+                          href={href}
+                          className="footer-link"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {item}
+                        </a>
+                      </li>
+                    )
+                  }
+                  return (
+                    <li key={i}>
+                      <Link to={href} className="footer-link">{item}</Link>
+                    </li>
+                  )
+                })}
               </ul>
             </div>
           ))}
@@ -50,7 +76,7 @@ export default function Footer() {
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.3)' }}>{f.copyright}</div>
           <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
             {f.legal.map((l, i) => (
-              <a key={i} href="#" className="footer-link" style={{ fontSize: 13 }}>{l}</a>
+              <Link key={i} to={getLegalHref(i)} className="footer-link" style={{ fontSize: 13 }}>{l}</Link>
             ))}
           </div>
         </div>

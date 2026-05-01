@@ -1,14 +1,3 @@
-const svg = (children, props = {}) => (size = 24, color = 'currentColor', strokeWidth = 1.75) => (
-  <svg
-    width={size} height={size} viewBox="0 0 24 24"
-    fill="none" stroke={color}
-    strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round"
-    {...props}
-  >
-    {children}
-  </svg>
-)
-
 // ─── Cognitive / Brain
 export function BrainIcon({ size = 24, color = 'currentColor', strokeWidth = 1.75 }) {
   return (
@@ -303,3 +292,4 @@ export function Icon({ name, size, color, strokeWidth }) {
   if (!Component) return null
   return <Component size={size} color={color} strokeWidth={strokeWidth} />
 }
+Icon.displayName = 'Icon'

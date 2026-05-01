@@ -1,9 +1,17 @@
-node_modules
-dist
-dist-ssr
+# Dependencies & build output (never ship in public ZIP / release artifacts)
+node_modules/
+dist/
+dist-ssr/
+
+# Local env & OS noise
 *.local
 .env
+.env.*
 .DS_Store
 Thumbs.db
 
-.vercel
+# Vercel link metadata (not secrets; still omit from archives you share)
+.vercel/
+
+# Optional: local archives
+*.zip
