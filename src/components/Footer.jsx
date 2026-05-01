@@ -1,15 +1,6 @@
-import { Link } from 'react-router-dom'
 import logo from '../logo/NEUROXISE_LOGO.jpg'
 import { useLanguage } from '../i18n/LanguageContext'
 import { getFooterColumnHref, getLegalHref, isFooterExternalUrl } from '../lib/footerLinks'
-
-/** RR expects `hash` without leading `#` */
-function routerTo(href) {
-  if (typeof href === 'string' && href.startsWith('/#') && href.length > 2) {
-    return { pathname: '/', hash: href.slice(2) }
-  }
-  return href
-}
 
 export default function Footer() {
   const { t } = useLanguage()
@@ -70,7 +61,7 @@ export default function Footer() {
                   }
                   return (
                     <li key={i}>
-                      <Link to={routerTo(href)} className="footer-link">{item}</Link>
+                      <a href={href} className="footer-link">{item}</a>
                     </li>
                   )
                 })}
@@ -84,7 +75,7 @@ export default function Footer() {
           <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.3)' }}>{f.copyright}</div>
           <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
             {f.legal.map((l, i) => (
-              <Link key={i} to={routerTo(getLegalHref(i))} className="footer-link" style={{ fontSize: 13 }}>{l}</Link>
+              <a key={i} href={getLegalHref(i)} className="footer-link" style={{ fontSize: 13 }}>{l}</a>
             ))}
           </div>
         </div>

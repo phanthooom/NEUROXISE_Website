@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import logo from '../logo/NEUROXISE_LOGO.jpg'
 import { useLanguage } from '../i18n/LanguageContext'
 import { LanguagesIcon } from './Icons'
@@ -33,7 +33,6 @@ function SunIcon() {
 }
 
 export default function Navbar() {
-  const location = useLocation()
   const { lang, setLang, t, isDark, setIsDark } = useLanguage()
   const c = mkC(isDark)
   const [scrolled, setScrolled] = useState(false)
@@ -60,7 +59,7 @@ export default function Navbar() {
   }, [langOpen])
 
   useEffect(() => {
-    if (location.pathname !== '/') {
+    if (window.location.pathname !== '/') {
       setActiveId('')
       return
     }
@@ -71,7 +70,7 @@ export default function Navbar() {
     )
     sections.forEach(s => observer.observe(s))
     return () => observer.disconnect()
-  }, [location.pathname])
+  }, [])
 
   const navLinks = [
     { label: t.nav.features, to: '/features', scrollId: 'features' },
@@ -114,11 +113,11 @@ export default function Navbar() {
         {/* Desktop nav */}
         <div className="nav-links">
           {navLinks.map(l => {
-            const isActive = location.pathname === l.to || (location.pathname === '/' && activeId === l.scrollId)
+            const isActive = window.location.pathname === l.to || (window.location.pathname === '/' && activeId === l.scrollId)
             return (
-              <Link key={l.to} to={l.to} className={`nav-link${isActive ? ' nav-link-active' : ''}`}>
+              <a key={l.to} href={l.to} className={`nav-link${isActive ? ' nav-link-active' : ''}`}>
                 {l.label}
-              </Link>
+              </a>
             )
           })}
         </div>
@@ -211,7 +210,7 @@ export default function Navbar() {
             )}
           </div>
 
-          <Link to="/download" className="nav-cta">{t.nav.getApp}</Link>
+          <a href="/download" className="nav-cta">{t.nav.getApp}</a>
 
           {/* Hamburger */}
           <button type="button" onClick={() => setMenuOpen(o => !o)} className="hamburger" aria-label="Menu">
@@ -225,9 +224,9 @@ export default function Navbar() {
       {/* Mobile menu */}
       <div className={`mobile-menu ${menuOpen ? 'mobile-menu-open' : ''}`}>
         {navLinks.map(l => (
-          <Link key={l.to} to={l.to} className="mobile-link" onClick={() => setMenuOpen(false)}>
+          <a key={l.to} href={l.to} className="mobile-link" onClick={() => setMenuOpen(false)}>
             {l.label}
-          </Link>
+          </a>
         ))}
 
         {/* Mobile lang + dark toggle */}
@@ -263,9 +262,9 @@ export default function Navbar() {
           </button>
         </div>
 
-        <Link to="/download" className="mobile-cta" onClick={() => setMenuOpen(false)}>
+        <a href="/download" className="mobile-cta" onClick={() => setMenuOpen(false)}>
           {t.nav.getApp} →
-        </Link>
+        </a>
       </div>
 
       <style>{`
