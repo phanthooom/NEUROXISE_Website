@@ -14,7 +14,7 @@ const COPY = {
         name: 'Standart', 
         oldPrice: '$15',
         price: 'Бесплатно', 
-        period: 'навсегда',
+        period: '',
         desc: 'Базовый курс упражнений для самостоятельного домашнего восстановления.',
         features: [
           'Доступ к базовым модулям мелкой моторики и речи (Афазия)',
@@ -73,7 +73,7 @@ const COPY = {
         name: 'Standart', 
         oldPrice: '$15',
         price: 'Free', 
-        period: 'forever',
+        period: '',
         desc: 'Basic exercise course for independent home recovery.',
         features: [
           'Access to basic fine motor and speech modules (Aphasia)',
@@ -132,7 +132,7 @@ const COPY = {
         name: 'Standart', 
         oldPrice: '$15',
         price: 'Bepul', 
-        period: 'doimiy',
+        period: '',
         desc: 'Uy sharoitida mustaqil tiklanish uchun asosiy mashqlar kursi.',
         features: [
           'Asosiy nozik motorika va nutq (Afaziya) modullariga kirish',
