@@ -7,123 +7,180 @@ import { CheckCircleIcon } from '../components/Icons'
 const COPY = {
   ru: {
     badge: 'Цены',
-    title: 'Инвестируйте в свой мозг',
-    subtitle: 'Начните с бесплатной базы или раскройте весь потенциал с подпиской Pro. Никаких скрытых платежей.',
+    title: 'Верните контроль над движениями и речью.',
+    subtitle: 'Каждый день — это шаг вперед. Восстановите движения, речь, когнитивные функции и уверенность вместе с NEUROXISE.',
     plans: [
       { 
-        name: 'Starter', 
+        name: 'Standart', 
+        oldPrice: '$15',
         price: 'Бесплатно', 
         period: 'навсегда',
-        desc: 'Отличный старт для знакомства с тренировками.',
-        features: ['Базовые упражнения', 'Простая статистика', '1 профиль', 'Поддержка по email'],
+        desc: 'Базовый курс упражнений для самостоятельного домашнего восстановления.',
+        features: [
+          'Доступ к базовым модулям мелкой моторики и речи (Афазия)',
+          'Стартовая оценка двигательных и речевых функций',
+          'Локальное сохранение результатов тренировок на устройстве',
+          'Ежедневный контроль регулярности занятий',
+          'Стартовый скрининг для определения типа афазии и дефицитов'
+        ],
+        trial: '14-дневный пробный период',
         cta: 'Начать бесплатно',
         highlight: false
       },
       { 
-        name: 'Pro', 
-        price: '$9', 
-        period: 'в месяц',
-        desc: 'Максимум возможностей для ежедневного роста.',
-        features: ['Все упражнения (50+)', 'Персональная программа', 'Продвинутая аналитика', 'Без рекламы', 'Приоритетная поддержка'],
-        cta: 'Попробовать Pro',
+        name: 'Premium', 
+        price: '$ 30', 
+        period: '/ месяц',
+        desc: 'Комплексная индивидуальная программа реабилитации для пациента и поддержка близких.',
+        features: [
+          'Полный доступ ко всем 4 модулям платформы (включая когнитивный)',
+          'Доступ к библиотеке видеоуроков по крупной моторике для близких',
+          'Развернутая автоматическая диагностика речевых и моторных дефицитов',
+          'Динамическая адаптация сложности заданий под состояние пациента',
+          'Экспорт структурированных отчетов для демонстрации лечащему врачу',
+          'Приоритетная техническая поддержка',
+          'Развернутая экспертная диагностика речевых нарушений с определением формы афазии'
+        ],
+        trial: '14-дневный пробный период',
+        cta: 'Оформить Premium',
         highlight: true,
-        popular: 'Популярный выбор'
+        popular: 'Популярный'
       },
       { 
-        name: 'Team', 
+        name: 'ENTERPRISE', 
         price: 'По запросу', 
-        period: 'гибкие условия',
-        desc: 'Для школ, клиник и корпоративных команд.',
-        features: ['От 5 до 1000+ профилей', 'Админ-панель', 'Выгрузка отчётов', 'Обучение команды', 'Персональный менеджер'],
-        cta: 'Связаться с нами',
+        period: '',
+        desc: 'Интеграция платформы в практику медицинских центров и работу профильных специалистов.',
+        features: [
+          'Все возможности тарифа Премиум',
+          'Панель врача для одновременного ведения и мониторинга множества пациентов',
+          'Возможность ручной корректировки протоколов занятий реабилитологом',
+          'Экспорт данных для интеграции с внутренними медицинскими картами',
+          'Персональный менеджер внедрения и техническое сопровождение',
+          'Обучение медицинского персонала работе с платформой'
+        ],
+        cta: 'Связаться с отделом продаж',
         highlight: false
       },
     ],
-    faqTitle: 'Частые вопросы',
-    faqs: [
-      { q: 'Можно ли отменить подписку?', a: 'Да, вы можете отменить подписку в любой момент в настройках профиля, без штрафов и скрытых комиссий.' },
-      { q: 'Есть ли бесплатный период у Pro?', a: 'Мы предоставляем 7-дневный пробный период для новых пользователей, чтобы вы могли оценить все преимущества.' },
-    ]
   },
   en: {
     badge: 'Pricing',
-    title: 'Invest in your mind',
-    subtitle: 'Start with the free basics or unlock full potential with Pro. No hidden fees.',
+    title: 'Regain control over movement and speech.',
+    subtitle: 'Every day is a step forward. Restore movements, speech, cognitive functions, and confidence with NEUROXISE.',
     plans: [
       { 
-        name: 'Starter', 
+        name: 'Standart', 
+        oldPrice: '$15',
         price: 'Free', 
         period: 'forever',
-        desc: 'A great starting point to explore brain training.',
-        features: ['Basic exercises', 'Simple statistics', '1 profile', 'Email support'],
+        desc: 'Basic exercise course for independent home recovery.',
+        features: [
+          'Access to basic fine motor and speech modules (Aphasia)',
+          'Initial assessment of motor and speech functions',
+          'Local storage of training results on device',
+          'Daily tracking of session regularity',
+          'Initial screening to determine aphasia type and deficits'
+        ],
+        trial: '14-day free trial',
         cta: 'Start for free',
         highlight: false
       },
       { 
-        name: 'Pro', 
-        price: '$9', 
-        period: 'per month',
-        desc: 'Maximum capabilities for daily cognitive growth.',
-        features: ['All exercises (50+)', 'Personalized plan', 'Advanced analytics', 'No ads', 'Priority support'],
-        cta: 'Try Pro',
+        name: 'Premium', 
+        price: '$ 30', 
+        period: '/ month',
+        desc: 'Comprehensive individual rehabilitation program for the patient and support for loved ones.',
+        features: [
+          'Full access to all 4 platform modules (including cognitive)',
+          'Access to gross motor video lesson library for relatives',
+          'Detailed automated diagnostics of speech and motor deficits',
+          'Dynamic adaptation of task difficulty to patient state',
+          'Export of structured reports to show the attending physician',
+          'Priority technical support',
+          'Detailed expert diagnostics of speech disorders determining aphasia form'
+        ],
+        trial: '14-day free trial',
+        cta: 'Get Premium',
         highlight: true,
-        popular: 'Most Popular'
+        popular: 'Popular'
       },
       { 
-        name: 'Team', 
-        price: 'Custom', 
-        period: 'flexible terms',
-        desc: 'For schools, clinics, and corporate teams.',
-        features: ['From 5 to 1000+ profiles', 'Admin dashboard', 'Report exports', 'Team onboarding', 'Dedicated manager'],
-        cta: 'Contact us',
+        name: 'ENTERPRISE', 
+        price: 'On request', 
+        period: '',
+        desc: 'Platform integration into medical centers and specialized professionals\' workflow.',
+        features: [
+          'All Premium plan features',
+          'Doctor dashboard for simultaneous management and monitoring of multiple patients',
+          'Ability for manual adjustment of session protocols by a rehabilitologist',
+          'Data export for integration with internal electronic health records',
+          'Dedicated implementation manager and technical support',
+          'Training of medical staff to work with the platform'
+        ],
+        cta: 'Contact Sales',
         highlight: false
       },
     ],
-    faqTitle: 'Frequently Asked Questions',
-    faqs: [
-      { q: 'Can I cancel my subscription?', a: 'Yes, you can cancel your subscription at any time in your profile settings with no hidden fees.' },
-      { q: 'Is there a free trial for Pro?', a: 'We offer a 7-day free trial for all new users to experience the full benefits.' },
-    ]
   },
   uz: {
     badge: 'Narxlar',
-    title: 'Miyangizga sarmoya kiriting',
-    subtitle: 'Bepul asosdan boshlang yoki Pro bilan barcha imkoniyatlarni oching. Yashirin to‘lovlar yo‘q.',
+    title: 'Harakat va nutq ustidan nazoratni qaytaring.',
+    subtitle: 'Har bir kun — bu oldinga qadam. NEUROXISE bilan harakatlar, nutq, kognitiv funksiyalar va ishonchni tiklang.',
     plans: [
       { 
-        name: 'Starter', 
+        name: 'Standart', 
+        oldPrice: '$15',
         price: 'Bepul', 
         period: 'doimiy',
-        desc: 'Miya mashqlari bilan tanishish uchun ajoyib boshlanish.',
-        features: ['Asosiy mashqlar', 'Oddiy statistika', '1 profil', 'Email yordam'],
+        desc: 'Uy sharoitida mustaqil tiklanish uchun asosiy mashqlar kursi.',
+        features: [
+          'Asosiy nozik motorika va nutq (Afaziya) modullariga kirish',
+          'Harakat va nutq funksiyalarini dastlabki baholash',
+          'Mashg\'ulot natijalarini qurilmada lokal saqlash',
+          'Mashg\'ulotlar muntazamligini kundalik nazorat qilish',
+          'Afaziya turi va nuqsonlarni aniqlash uchun dastlabki skrining'
+        ],
+        trial: '14 kunlik bepul sinov muddati',
         cta: 'Bepul boshlash',
         highlight: false
       },
       { 
-        name: 'Pro', 
-        price: '$9', 
-        period: 'oyiga',
-        desc: 'Har kungi kognitiv o‘sish uchun maksimal imkoniyatlar.',
-        features: ['Barcha mashqlar (50+)', 'Shaxsiy dastur', 'Keng analitika', 'Reklamasiz', 'Tezkor yordam'],
-        cta: 'Pro-ni sinab ko‘rish',
+        name: 'Premium', 
+        price: '$ 30', 
+        period: '/ oy',
+        desc: 'Bemor uchun kompleks individual reabilitatsiya dasturi va yaqinlari uchun yordam.',
+        features: [
+          'Platformaning barcha 4 ta moduliga to\'liq kirish (jumladan, kognitiv)',
+          'Yaqinlar uchun yirik motorika bo\'yicha videodarslar kutubxonasiga kirish',
+          'Nutq va motor nuqsonlarining batafsil avtomatlashtirilgan diagnostikasi',
+          'Vazifalar murakkabligini bemor holatiga dinamik moslashtirish',
+          'Davolovchi shifokorga ko\'rsatish uchun tizimlashtirilgan hisobotlarni yuklab olish',
+          'Tezkor texnik yordam',
+          'Afaziya shaklini aniqlaydigan nutq buzilishlarining batafsil ekspert diagnostikasi'
+        ],
+        trial: '14 kunlik bepul sinov muddati',
+        cta: 'Premiumga o\'tish',
         highlight: true,
-        popular: 'Eng ommabop'
+        popular: 'Ommabop'
       },
       { 
-        name: 'Team', 
-        price: 'Kelishuv', 
-        period: 'moslashuvchan',
-        desc: 'Maktablar, klinikalar va korporativ jamoalar uchun.',
-        features: ['5 dan 1000+ profilgacha', 'Admin panel', 'Hisobotlarni yuklash', 'Jamoani o‘qitish', 'Shaxsiy menejer'],
-        cta: 'Biz bilan bog‘lanish',
+        name: 'ENTERPRISE', 
+        price: 'So\'rov bo\'yicha', 
+        period: '',
+        desc: 'Platformani tibbiyot markazlari amaliyotiga va mutaxassislar ishiga integratsiya qilish.',
+        features: [
+          'Premium tarifining barcha imkoniyatlari',
+          'Bir nechta bemorlarni bir vaqtda kuzatish va boshqarish uchun shifokor paneli',
+          'Reabilitolog tomonidan mashg\'ulot protokollarini qo\'lda o\'zgartirish imkoniyati',
+          'Ichki tibbiy kartalar bilan integratsiya qilish uchun ma\'lumotlarni yuklab olish',
+          'Shaxsiy joriy etish menejeri va texnik yordam',
+          'Tibbiyot xodimlarini platforma bilan ishlashga o\'rgatish'
+        ],
+        cta: 'Sotuv bo\'limi bilan bog\'lanish',
         highlight: false
       },
     ],
-    faqTitle: 'Ko‘p so‘raladigan savollar',
-    faqs: [
-      { q: 'Obunani bekor qilsam bo‘ladimi?', a: 'Ha, istalgan vaqtda profil sozlamalaridan obunani bekor qilishingiz mumkin.' },
-      { q: 'Pro uchun bepul sinov bormi?', a: 'Barcha afzalliklarni baholash uchun yangi foydalanuvchilarga 7 kunlik bepul sinov muddatini taqdim etamiz.' },
-    ]
   },
 }
 
@@ -135,109 +192,91 @@ export default function PricingPage() {
 
   return (
     <SiteChrome>
-      <section style={{ padding: '120px 0 88px', background: c.pageBg }}>
+      <section style={{ padding: '60px 0 88px', background: c.pageBg }}>
         <div className="container">
-          {/* Header */}
-          <div className="pr-head">
-            <div className="pr-badge" style={{ background: isDark ? 'rgba(61,82,245,.15)' : '#EEF0FF', color: '#3D52F5' }}>{t.badge}</div>
-            <h1 style={{ color: c.text, fontSize: 'clamp(36px, 5vw, 56px)', fontWeight: 800, letterSpacing: '-1px', marginBottom: 16 }}>{t.title}</h1>
-            <p style={{ color: c.text2, fontSize: 18, lineHeight: 1.6, maxWidth: 640, margin: '0 auto' }}>{t.subtitle}</p>
+          
+          <div className="pr-head" style={{ marginBottom: 60, textAlign: 'center' }}>
+            <h1 className="pr-title" style={{ display: 'inline-block', background: '#0047AB', color: '#fff', padding: '10px 20px', fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 700, margin: '0 auto 20px' }}>
+              {t.title}
+            </h1>
+            <p className="pr-subtitle" style={{ display: 'inline-block', background: '#0047AB', color: '#fff', padding: '16px 24px', fontSize: '16px', lineHeight: 1.5, margin: '0 auto', maxWidth: 800 }}>
+              {t.subtitle}
+            </p>
           </div>
 
-          {/* Pricing Grid */}
           <div className="pr-grid">
             {t.plans.map((plan, i) => (
               <article 
                 key={plan.name} 
                 className={`pr-card ${plan.highlight ? 'pr-card-pro' : ''}`} 
                 style={{ 
-                  background: isDark ? (plan.highlight ? 'linear-gradient(180deg, #1A1D2E 0%, #141728 100%)' : '#141728') : '#fff', 
-                  borderColor: plan.highlight ? '#3D52F5' : c.border, 
+                  background: isDark ? (plan.highlight ? '#1A1D2E' : '#141728') : '#fff', 
+                  borderColor: plan.highlight ? '#6A7BF7' : c.border, 
                   animationDelay: `${i * 100}ms` 
                 }}
               >
                 {plan.highlight && (
-                  <div className="pr-popular" style={{ background: 'linear-gradient(135deg, #3D52F5, #6A7BF7)' }}>
+                  <div className="pr-popular" style={{ background: '#6A7BF7' }}>
                     {plan.popular}
                   </div>
                 )}
                 
-                <div style={{ color: plan.highlight ? '#3D52F5' : c.text2, fontWeight: 700, fontSize: 16, marginBottom: 12, textTransform: 'uppercase', letterSpacing: 1 }}>
+                <div style={{ background: '#0047AB', color: '#fff', padding: '16px', textAlign: 'center', fontWeight: 600, fontSize: 18, marginBottom: 20 }}>
                   {plan.name}
                 </div>
                 
-                <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 16 }}>
-                  <span style={{ color: c.text, fontSize: 42, fontWeight: 800, letterSpacing: '-1px' }}>{plan.price}</span>
-                  <span style={{ color: c.text2, fontSize: 15, fontWeight: 500 }}>/ {plan.period}</span>
+                <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: 6, marginBottom: 8, flexWrap: 'wrap', padding: '0 20px' }}>
+                  {plan.oldPrice && (
+                    <span style={{ color: c.text2, fontSize: 20, fontWeight: 700, textDecoration: 'line-through', opacity: 0.6, marginRight: 4 }}>{plan.oldPrice}</span>
+                  )}
+                  <span style={{ color: c.text, fontSize: 40, fontWeight: 800, letterSpacing: '-1px' }}>{plan.price}</span>
+                  {plan.period && <span style={{ color: c.text2, fontSize: 16, fontWeight: 500 }}>{plan.period}</span>}
                 </div>
                 
-                <p style={{ color: c.text2, fontSize: 15, lineHeight: 1.6, marginBottom: 28, minHeight: 48 }}>{plan.desc}</p>
+                <p style={{ color: c.text2, fontSize: 14, lineHeight: 1.5, marginBottom: 20, minHeight: 44, textAlign: 'center', padding: '0 20px' }}>{plan.desc}</p>
                 
-                <a href={plan.name === 'Team' ? '/contact' : '/download'} className={`pr-btn ${plan.highlight ? 'pr-btn-pro' : ''}`} style={{ 
-                  background: plan.highlight ? '#3D52F5' : (isDark ? '#252840' : '#F5F6FA'),
-                  color: plan.highlight ? '#fff' : c.text,
-                }}>
-                  {plan.cta}
-                </a>
-
-                <div style={{ marginTop: 32, paddingTop: 32, borderTop: `1px solid ${c.border}` }}>
+                <div style={{ background: '#0047AB', flexGrow: 1, padding: '24px 20px', color: '#fff' }}>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 14 }}>
                     {plan.features.map(feat => (
-                      <li key={feat} style={{ display: 'flex', alignItems: 'center', gap: 10, color: c.text, fontSize: 15, fontWeight: 500 }}>
-                        <div style={{ display: 'flex', flexShrink: 0, color: plan.highlight ? '#3D52F5' : '#34C48C' }}>
-                          <CheckCircleIcon size={20} strokeWidth={2.5} />
+                      <li key={feat} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 13, fontWeight: 400, lineHeight: 1.5 }}>
+                        <div style={{ display: 'flex', flexShrink: 0, marginTop: 2, color: '#fff' }}>
+                          <span style={{ fontSize: 18, lineHeight: 1 }}>•</span>
                         </div>
                         {feat}
                       </li>
                     ))}
                   </ul>
+                  
+                  {plan.trial && (
+                    <div style={{ textAlign: 'center', fontSize: 13, marginTop: 24, opacity: 0.9 }}>
+                      {plan.trial}
+                    </div>
+                  )}
                 </div>
+
               </article>
             ))}
-          </div>
-
-          {/* FAQ Section */}
-          <div className="pr-faq">
-            <h2 style={{ color: c.text, fontSize: 28, fontWeight: 800, textAlign: 'center', marginBottom: 40 }}>{t.faqTitle}</h2>
-            <div className="pr-faq-grid">
-              {t.faqs.map(faq => (
-                <div key={faq.q} style={{ background: isDark ? '#141728' : '#F5F6FA', padding: 24, borderRadius: 20 }}>
-                  <h3 style={{ color: c.text, fontSize: 17, fontWeight: 700, marginBottom: 10 }}>{faq.q}</h3>
-                  <p style={{ color: c.text2, fontSize: 15, lineHeight: 1.6, margin: 0 }}>{faq.a}</p>
-                </div>
-              ))}
-            </div>
           </div>
 
         </div>
       </section>
 
       <style>{`
-        .pr-head{text-align:center;animation:fadeUp .55s ease both;margin-bottom:60px}
-        .pr-badge{display:inline-flex;padding:6px 14px;border-radius:999px;font-size:13px;font-weight:700;margin-bottom:20px}
+        .pr-head{animation:fadeUp .55s ease both;display:flex;flex-direction:column;align-items:center}
         
-        .pr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:start;margin-bottom:80px}
+        .pr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;align-items:stretch;max-width:1100px;margin:0 auto}
         
-        .pr-card{position:relative;border:1px solid;border-radius:32px;padding:40px 32px;animation:fadeUp .6s ease both;transition:transform .3s cubic-bezier(0.4,0,0.2,1), box-shadow .3s cubic-bezier(0.4,0,0.2,1);display:flex;flex-direction:column}
-        .pr-card:hover{transform:translateY(-8px)}
+        .pr-card{position:relative;border:1px solid;border-radius:16px;overflow:hidden;animation:fadeUp .6s ease both;display:flex;flex-direction:column;box-shadow:0 10px 30px rgba(0,0,0,0.05)}
         
-        .pr-card-pro{box-shadow:0 24px 48px rgba(61,82,245,.15);border-width:2px;padding:39px 31px}
-        .pr-card-pro:hover{box-shadow:0 32px 64px rgba(61,82,245,.25)}
+        .pr-card-pro{border-width:2px;transform:translateY(-8px)}
         
-        .pr-popular{position:absolute;top:-14px;left:50%;transform:translateX(-50%);color:#fff;padding:6px 16px;border-radius:999px;font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;box-shadow:0 4px 12px rgba(61,82,245,.3)}
-        
-        .pr-btn{display:block;text-align:center;padding:14px;border-radius:14px;text-decoration:none;font-weight:700;font-size:16px;transition:all .2s ease}
-        .pr-btn:hover{filter:brightness(0.95)}
-        .pr-btn-pro:hover{filter:brightness(1.1);box-shadow:0 8px 24px rgba(61,82,245,.3)}
-        
-        .pr-faq{max-width:800px;margin:0 auto;animation:fadeUp .7s ease both}
-        .pr-faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+        .pr-popular{position:absolute;top:-1px;left:50%;transform:translateX(-50%);color:#fff;padding:6px 24px;border-radius:0 0 12px 12px;font-size:13px;font-weight:600;z-index:2}
         
         @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
         
         @media (max-width:960px){
-          .pr-grid{grid-template-columns:1fr;max-width:480px;margin-left:auto;margin-right:auto}
-          .pr-faq-grid{grid-template-columns:1fr}
+          .pr-grid{grid-template-columns:1fr;max-width:440px}
+          .pr-card-pro{transform:none}
         }
       `}</style>
     </SiteChrome>
