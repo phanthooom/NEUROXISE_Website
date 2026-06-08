@@ -174,8 +174,8 @@ export default function FeaturesPage() {
           {/* Hero */}
           <div className="fp-hero" style={{ animation: 'fadeUp .5s ease both' }}>
             <div style={{ display: 'inline-flex', padding: '6px 14px', borderRadius: 999, background: '#EEF0FF', color: '#3D52F5', fontSize: 13, fontWeight: 700, marginBottom: 16 }}>{t.badge}</div>
-            <h1 style={{ fontSize: 'clamp(30px, 5vw, 56px)', color: c.text, lineHeight: 1.08, marginBottom: 16, letterSpacing: '-1px', maxWidth: 700 }}>{t.title}</h1>
-            <p style={{ color: c.text2, fontSize: 18, lineHeight: 1.75, maxWidth: 600, marginBottom: 28 }}>{t.subtitle}</p>
+            <h1 style={{ fontSize: 'clamp(30px, 5vw, 56px)', color: c.text, lineHeight: 1.08, letterSpacing: '-1px', maxWidth: 700, margin: '0 auto 16px' }}>{t.title}</h1>
+            <p style={{ color: c.text2, fontSize: 18, lineHeight: 1.75, maxWidth: 600, margin: '0 auto 28px' }}>{t.subtitle}</p>
           </div>
 
           {/* Feature cards */}
