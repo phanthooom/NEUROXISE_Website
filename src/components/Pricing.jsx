@@ -21,17 +21,10 @@ export default function Pricing() {
       <div className="container">
 
         {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: 64 }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: c.badge, borderRadius: 999, padding: '6px 14px', marginBottom: 16 }}>
-            <span style={{ fontSize: 13, fontWeight: 600, color: '#3D52F5' }}>{p.badge}</span>
+        <div style={{ background: '#0047AB', color: '#fff', padding: '24px 32px', borderRadius: 16, textAlign: 'center', marginBottom: 64 }}>
+          <div style={{ fontSize: 24, fontWeight: 600, lineHeight: 1.4, maxWidth: 800, margin: '0 auto' }}>
+            {p.title1} {p.subtitle}
           </div>
-          <h2 className="section-title">
-            {p.title1}{' '}
-            <span style={{ background: 'linear-gradient(135deg, #3D52F5, #9DA8F5)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
-              {p.title2}
-            </span>
-          </h2>
-          <p className="section-subtitle">{p.subtitle}</p>
         </div>
 
         {/* Cards */}

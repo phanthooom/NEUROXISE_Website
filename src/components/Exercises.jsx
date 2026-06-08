@@ -80,37 +80,17 @@ export default function Exercises() {
               onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-1px)'}
               onMouseLeave={e => e.currentTarget.style.transform = 'translateY(0)'}
             >
-              {ex.tryBtn} {cat.key}
+              {cat.btnText || `${ex.tryBtn} ${cat.key}`}
             </Link>
           </div>
 
-          <div className="cat-detail-right">
-            {cat.exercises.map((exItem, i) => (
-              <div key={i} className="ex-row"
-                onMouseEnter={e => { e.currentTarget.style.borderColor = cat.color; e.currentTarget.style.background = cat.bg }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = c.border; e.currentTarget.style.background = c.cardBg2 }}
-                style={{ background: c.cardBg2, borderColor: c.border }}
-              >
-                <div style={{
-                  width: 36, height: 36, borderRadius: 10, background: cat.bg,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  fontWeight: 700, color: cat.color, fontSize: 14, flexShrink: 0,
-                }}>
-                  {i + 1}
-                </div>
-                <div style={{ flex: 1 }}>
-                  <div style={{ fontSize: 14, fontWeight: 600, color: c.text }}>{exItem.name}</div>
-                  <div style={{ fontSize: 12, color: c.text2, marginTop: 2 }}>{exItem.time}</div>
-                </div>
-                <span style={{
-                  fontSize: 11, fontWeight: 700,
-                  color: getDiffColor(exItem.diff), background: getDiffBg(exItem.diff),
-                  padding: '3px 10px', borderRadius: 999, whiteSpace: 'nowrap',
-                }}>
-                  {getDiffLabel(exItem.diff)}
-                </span>
-              </div>
-            ))}
+          <div className="cat-detail-right" style={{ padding: '32px 24px', background: cat.color, borderRadius: 20 }}>
+            <h4 style={{ fontSize: 22, fontWeight: 700, color: '#fff', marginBottom: 20 }}>{ex.focusTitle}</h4>
+            <ul style={{ display: 'flex', flexDirection: 'column', gap: 16, paddingLeft: 24, color: '#fff', margin: 0 }}>
+              {cat.focusPoints && cat.focusPoints.map((pt, i) => (
+                <li key={i} style={{ fontSize: 16, lineHeight: 1.5, listStyleType: 'disc' }}>{pt}</li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>

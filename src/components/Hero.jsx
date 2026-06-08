@@ -180,7 +180,7 @@ export default function Hero() {
                   ))}
                 </div>
                 <div style={{ fontSize: 13, color: c.text2, marginTop: 2 }}>
-                  <strong style={{ color: c.text }}>10,000+</strong> {h.social}
+                  {h.social}
                 </div>
               </div>
             </div>
