@@ -542,7 +542,7 @@ const translations = {
           ],
         },
       ],
-    }
+    },
 
     footer: {
       tagline:   'Science-backed cognitive training for everyone. Build better focus, memory and speech every day.',
@@ -790,7 +790,7 @@ const translations = {
           ],
         },
       ],
-    }
+    },
 
     footer: {
       tagline:   "Hamma uchun fan asosidagi kognitiv mashqlar. Har kuni e'tibor, xotira va nutqni yaxshilang.",
