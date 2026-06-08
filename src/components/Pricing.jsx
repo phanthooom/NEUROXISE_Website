@@ -21,9 +21,12 @@ export default function Pricing() {
       <div className="container">
 
         {/* Header */}
-        <div style={{ background: '#0047AB', color: '#fff', padding: '24px 32px', borderRadius: 16, textAlign: 'center', marginBottom: 64 }}>
-          <div style={{ fontSize: 24, fontWeight: 600, lineHeight: 1.4, maxWidth: 800, margin: '0 auto' }}>
-            {p.title1} {p.subtitle}
+        <div style={{ background: '#0047AB', color: '#fff', padding: '32px 32px', borderRadius: 16, textAlign: 'center', marginBottom: 64 }}>
+          <div style={{ fontSize: 32, fontWeight: 700, lineHeight: 1.3, marginBottom: 12 }}>
+            {p.title1}
+          </div>
+          <div style={{ fontSize: 18, fontWeight: 400, lineHeight: 1.5, opacity: 0.9, maxWidth: 800, margin: '0 auto' }}>
+            {p.subtitle}
           </div>
         </div>
 

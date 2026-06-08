@@ -238,9 +238,9 @@ const translations = {
     // Pricing
     pricing: {
       badge:    'Тарифы',
-      title1:   'Каждый день — это шаг вперед.',
+      title1:   'Верните контроль над движениями и речью.',
       title2:   '',
-      subtitle: 'Восстановите движения, речь, когнитивные функции и уверенность вместе с NEUROXISE.',
+      subtitle: 'Каждый день — это шаг вперед. Восстановите движения, речь, когнитивные функции и уверенность вместе с NEUROXISE.',
       popular:  'Популярный',
       plans: [
         {
@@ -525,9 +525,9 @@ const translations = {
 
     pricing: {
       badge:    'Pricing',
-      title1:   'Every day is a step forward.',
+      title1:   'Regain control over movement and speech.',
       title2:   '',
-      subtitle: 'Restore movement, speech, cognitive functions, and confidence with NEUROXISE.',
+      subtitle: 'Every day is a step forward. Restore movement, speech, cognitive functions, and confidence with NEUROXISE.',
       popular:  'Popular',
       plans: [
         {
@@ -773,9 +773,9 @@ const translations = {
 
     pricing: {
       badge:    'Tariflar',
-      title1:   'Har bir kun — oldinga qadam.',
+      title1:   'Harakat va nutq ustidan nazoratni qaytaring.',
       title2:   '',
-      subtitle: 'NEUROXISE bilan harakat, nutq, kognitiv funktsiyalar va ishonchni tiklang.',
+      subtitle: 'Har bir kun — oldinga qadam. NEUROXISE bilan harakat, nutq, kognitiv funktsiyalar va ishonchni tiklang.',
       popular:  'Ommabop',
       plans: [
         {
