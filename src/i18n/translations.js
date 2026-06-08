@@ -363,7 +363,7 @@ const translations = {
       items: [
         {
           title: 'Adaptive protocols',
-          desc:  'The system analyzes performance dynamics and automatically adjusts task difficulty to the patient\\'s current state, ensuring optimal and safe therapeutic load.',
+          desc:  'The system analyzes performance dynamics and automatically adjusts task difficulty to the patient\'s current state, ensuring optimal and safe therapeutic load.',
         },
         {
           title: 'Objective control',
