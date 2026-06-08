@@ -299,7 +299,7 @@ const translations = {
     footer: {
       tagline: 'Тренировки мозга на основе науки для каждого. Улучшайте концентрацию, память и речь каждый день.',
       badge:   'Когнитивные тренировки и терапия',
-      copyright: '© 2025 NEUROXISE. Все права защищены.',
+      copyright: '© 2026 NEUROXISE. Все права защищены.',
       sections: {
         Product:   'Продукт',
         Company:   'Компания',
@@ -585,7 +585,7 @@ const translations = {
     footer: {
       tagline:   'Science-backed cognitive training for everyone. Build better focus, memory and speech every day.',
       badge:     'Cognitive Training & Therapy',
-      copyright: '© 2025 NEUROXISE. All rights reserved.',
+      copyright: '© 2026 NEUROXISE. All rights reserved.',
       sections: {
         Product:   'Product',
         Company:   'Company',
@@ -871,7 +871,7 @@ const translations = {
     footer: {
       tagline:   "Hamma uchun fan asosidagi kognitiv mashqlar. Har kuni e'tibor, xotira va nutqni yaxshilang.",
       badge:     'Kognitiv mashqlar va terapiya',
-      copyright: '© 2025 NEUROXISE. Barcha huquqlar himoyalangan.',
+      copyright: '© 2026 NEUROXISE. Barcha huquqlar himoyalangan.',
       sections: {
         Product:   'Mahsulot',
         Company:   'Kompaniya',
