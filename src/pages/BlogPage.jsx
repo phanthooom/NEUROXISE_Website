@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import SiteChrome from '../layouts/SiteChrome'
 import { useLanguage } from '../i18n/LanguageContext'
 import { mkC } from '../theme'
@@ -187,6 +188,39 @@ export default function BlogPage() {
   usePageMeta(t.badge, t.subtitle)
   const articles = ARTICLES[lang] || ARTICLES.ru
 
+  const [email, setEmail] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [sent, setSent] = useState(false)
+  const [error, setError] = useState('')
+
+  const handleSubscribe = async (e) => {
+    e.preventDefault()
+    if (!email) return
+    setLoading(true)
+    setError('')
+
+    try {
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api/feedback'
+      
+      const res = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ formType: 'newsletter', email })
+      })
+
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Error')
+
+      setSent(true)
+      setEmail('')
+    } catch (err) {
+      console.error(err)
+      setError('Ошибка. Попробуйте позже.')
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <SiteChrome>
       <section style={{ padding: '120px 0 88px', background: c.pageBg }}>
@@ -227,10 +261,19 @@ export default function BlogPage() {
               <h2 style={{ color: c.text, fontSize: 22, fontWeight: 700, marginBottom: 6 }}>{t.newsletter}</h2>
               <p style={{ color: c.text2, fontSize: 15, lineHeight: 1.6 }}>{t.newsletterSub}</p>
             </div>
-            <form className="bl-nl-form" onSubmit={e => e.preventDefault()}>
-              <input className="bl-nl-input" type="email" placeholder={t.placeholder} style={{ background: isDark ? '#0C0E1A' : '#fff', borderColor: c.border, color: c.text }} />
-              <button type="submit" className="bl-nl-btn">{t.btn}</button>
-            </form>
+            {sent ? (
+              <div style={{ flex: 1, minWidth: 280, color: '#34C48C', fontWeight: 600, fontSize: 16 }}>
+                ✅ Спасибо за подписку!
+              </div>
+            ) : (
+              <div style={{ flex: 1, minWidth: 280, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                <form className="bl-nl-form" onSubmit={handleSubscribe} style={{ margin: 0 }}>
+                  <input className="bl-nl-input" type="email" required value={email} onChange={e => setEmail(e.target.value)} placeholder={t.placeholder} style={{ background: isDark ? '#0C0E1A' : '#fff', borderColor: c.border, color: c.text }} />
+                  <button type="submit" className="bl-nl-btn" disabled={loading} style={{ opacity: loading ? 0.7 : 1 }}>{loading ? '...' : t.btn}</button>
+                </form>
+                {error && <div style={{ color: '#DC2626', fontSize: 13 }}>{error}</div>}
+              </div>
+            )}
           </div>
 
         </div>

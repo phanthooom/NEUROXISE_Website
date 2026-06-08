@@ -89,15 +89,39 @@ export default function ContactPage() {
 
   const [form, setForm] = useState({ name: '', email: '', topic: f.topicOptions[0], message: '' })
   const [sent, setSent] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const set = (k) => (e) => setForm(prev => ({ ...prev, [k]: e.target.value }))
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    const subject = encodeURIComponent(`[${form.topic}] ${form.name}`)
-    const body = encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\nTopic: ${form.topic}\n\n${form.message}`)
-    window.location.href = `mailto:hello@neuroxise.app?subject=${subject}&body=${body}`
-    setSent(true)
+    setLoading(true)
+    setError('')
+
+    try {
+      // Изначально используем локальный адрес или подставляем из .env когда задеплоим
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api/feedback'
+      
+      const res = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form)
+      })
+
+      const data = await res.json()
+
+      if (!res.ok) {
+        throw new Error(data.error || 'Something went wrong')
+      }
+
+      setSent(true)
+    } catch (err) {
+      console.error('Submit error:', err)
+      setError('Ошибка при отправке сообщения. Пожалуйста, попробуйте позже.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   const inp = { background: isDark ? '#0C0E1A' : '#fff', borderColor: c.border, color: c.text }
@@ -151,6 +175,11 @@ export default function ContactPage() {
               ) : (
                 <>
                   <h2 style={{ color: c.text, fontSize: 20, fontWeight: 700, marginBottom: 22 }}>{t.formTitle}</h2>
+                  {error && (
+                    <div style={{ background: 'rgba(220,38,38,.1)', color: '#DC2626', padding: '10px 14px', borderRadius: 8, fontSize: 14, marginBottom: 16 }}>
+                      {error}
+                    </div>
+                  )}
                   <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                     <div className="ct-row">
                       <div className="ct-field">
@@ -172,7 +201,9 @@ export default function ContactPage() {
                       <label className="ct-label" style={{ color: c.text2 }}>{f.message}</label>
                       <textarea required className="ct-inp ct-textarea" style={inp} value={form.message} onChange={set('message')} placeholder={f.message} />
                     </div>
-                    <button type="submit" className="ct-submit">{t.send} →</button>
+                    <button type="submit" className="ct-submit" disabled={loading} style={{ opacity: loading ? 0.7 : 1 }}>
+                      {loading ? 'Отправка...' : `${t.send} →`}
+                    </button>
                   </form>
                 </>
               )}

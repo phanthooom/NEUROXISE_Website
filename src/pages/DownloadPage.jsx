@@ -91,12 +91,34 @@ export default function DownloadPage() {
 
   const [email, setEmail] = useState('')
   const [sent, setSent] = useState(false)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (!email) return
-    window.location.href = `mailto:hello@neuroxise.app?subject=${encodeURIComponent('Waitlist: ' + email)}&body=${encodeURIComponent('Add to waitlist: ' + email)}`
-    setSent(true)
+    setLoading(true)
+    setError('')
+
+    try {
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001/api/feedback'
+      
+      const res = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ formType: 'waitlist', email })
+      })
+
+      const data = await res.json()
+      if (!res.ok) throw new Error(data.error || 'Error')
+
+      setSent(true)
+    } catch (err) {
+      console.error(err)
+      setError('Ошибка при отправке. Попробуйте позже.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -142,6 +164,7 @@ export default function DownloadPage() {
               ) : (
                 <>
                   <h2 style={{ color: c.text, fontSize: 18, fontWeight: 700, marginBottom: 20 }}>{t.formTitle}</h2>
+                  {error && <div style={{ background: 'rgba(220,38,38,.1)', color: '#DC2626', padding: '8px 12px', borderRadius: 8, fontSize: 13, marginBottom: 12 }}>{error}</div>}
                   <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                     <input
                       type="email"
@@ -151,8 +174,8 @@ export default function DownloadPage() {
                       placeholder={t.emailPlaceholder}
                       style={{ padding: '13px 16px', borderRadius: 12, border: `1px solid ${c.border}`, background: isDark ? '#0C0E1A' : '#F5F6FA', color: c.text, fontSize: 15, outline: 'none', fontFamily: 'inherit' }}
                     />
-                    <button type="submit" style={{ background: '#3D52F5', color: '#fff', border: 'none', padding: '14px', borderRadius: 12, fontWeight: 700, fontSize: 15, cursor: 'pointer', fontFamily: 'inherit' }}>
-                      {t.btn}
+                    <button type="submit" disabled={loading} style={{ background: '#3D52F5', color: '#fff', border: 'none', padding: '14px', borderRadius: 12, fontWeight: 700, fontSize: 15, cursor: loading ? 'not-allowed' : 'pointer', fontFamily: 'inherit', opacity: loading ? 0.7 : 1 }}>
+                      {loading ? '...' : t.btn}
                     </button>
                   </form>
                   <p style={{ color: c.text2, fontSize: 12, marginTop: 10, lineHeight: 1.5 }}>{t.privacy}</p>
