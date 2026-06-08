@@ -192,14 +192,14 @@ export default function PricingPage() {
 
   return (
     <SiteChrome>
-      <section style={{ padding: '60px 0 88px', background: c.pageBg }}>
+      <section style={{ padding: '100px 0 88px', background: c.pageBg }}>
         <div className="container">
           
-          <div className="pr-head" style={{ marginBottom: 60, textAlign: 'center' }}>
-            <h1 className="pr-title" style={{ display: 'inline-block', background: '#0047AB', color: '#fff', padding: '10px 20px', fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 700, margin: '0 auto 20px' }}>
+          <div className="pr-head" style={{ marginBottom: 64, textAlign: 'center' }}>
+            <h1 className="pr-title" style={{ color: c.text, fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: 800, margin: '0 auto 16px', letterSpacing: '-0.5px' }}>
               {t.title}
             </h1>
-            <p className="pr-subtitle" style={{ display: 'inline-block', background: '#0047AB', color: '#fff', padding: '16px 24px', fontSize: '16px', lineHeight: 1.5, margin: '0 auto', maxWidth: 800 }}>
+            <p className="pr-subtitle" style={{ color: c.text2, fontSize: '17px', lineHeight: 1.6, margin: '0 auto', maxWidth: 700 }}>
               {t.subtitle}
             </p>
           </div>
