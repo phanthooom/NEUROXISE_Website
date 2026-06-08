@@ -671,7 +671,7 @@ const translations = {
           title: 'Tizimlilik va komplayens',
           desc:  'Mashg\'ulotlar muntazamligini nazorat qilishning o\'rnatilgan tizimi va muloyim eslatmalar bemorga mashg\'ulotlar jadvaliga rioya qilishga yordam beradi va neyroplastiklik jarayonlarini doimiy ravishda rag\'batlantiradi.',
         },
-      ]
+      ],
     },
     howItWorks: {
       badge:    'Reabilitatsiya bosqichlari',
@@ -691,7 +691,7 @@ const translations = {
           title: 'Nazorat va korreksiya',
           desc:  'O\'zgarishlar dinamikasini qayd etish va terapevtik dasturni avtomatik moslashtirish. Davolovchi nevrolog shifokorga ko\'rsatish uchun tuzilgan hisobotlarni eksport qilish.',
         },
-      ]
+      ],
     },
     exercises: {
       badge:    'Platforma yo\'nalishlari',
@@ -761,48 +761,6 @@ const translations = {
             'Maishiy vazifalarga moslashish uchun mantiqiy fikrlashni rivojlantirish',
           ],
           exercises: []
-        },
-      ]
-    },
-        {
-          key: 'Nutq', icon: '🎤', color: '#9B59F5', bg: '#F3EEFF',
-          desc: "Tuzilgan takrorlash va ovozli mashqlar orqali ravonlik, artikulyatsiya va nutq aniqligini oshiring.",
-          exercises: [
-            { name: 'Tez aytishlar',     time: '3 daq', diff: 'Medium' },
-            { name: 'Gapni takrorlash',  time: '5 daq', diff: 'Easy'   },
-            { name: 'Tovush naqshlari',  time: '4 daq', diff: 'Hard'   },
-            { name: "So'z talaffuzi",    time: '6 daq', diff: 'Medium' },
-          ],
-        },
-        {
-          key: 'Diqqat', icon: '⚡', color: '#F5A623', bg: '#FEF4E2',
-          desc: "Chalg'ituvchi omillarni filtrlash va vazifaga uzoqroq e'tibor qaratish uchun barqaror va tanlab e'tibor qilishni rivojlantiring.",
-          exercises: [
-            { name: 'Diqqat panjarasi',  time: '4 daq', diff: 'Hard'   },
-            { name: 'Rang almashish',    time: '3 daq', diff: 'Medium' },
-            { name: 'Farqni top',        time: '5 daq', diff: 'Easy'   },
-            { name: 'Dual N-Back',       time: '7 daq', diff: 'Hard'   },
-          ],
-        },
-        {
-          key: 'Til', icon: '📖', color: '#34C48C', bg: '#E8FAF3',
-          desc: "O'qish va so'z qurish vazifalari orqali lug'at, tushunish va grammatika ko'nikmalarini kengaytiring.",
-          exercises: [
-            { name: "So'z quruvchi",     time: '5 daq',  diff: 'Medium' },
-            { name: "So'zlar tartibi",   time: '4 daq',  diff: 'Easy'   },
-            { name: 'Sinonimlar',        time: '3 daq',  diff: 'Easy'   },
-            { name: 'Matn tushunish',    time: '10 daq', diff: 'Medium' },
-          ],
-        },
-        {
-          key: "Kundalik ko'nikmalar", icon: '🌟', color: '#F55454', bg: '#FEF0F0',
-          desc: "Kundalik faoliyatda to'g'ridan-to'g'ri samaradorlikni oshiruvchi haqiqiy hayotiy funksional vazifalar.",
-          exercises: [
-            { name: "Vaqtni boshqarish", time: '6 daq', diff: 'Medium' },
-            { name: 'Qaror qabul qilish',time: '5 daq',  diff: 'Easy'   },
-            { name: 'Muammoni hal qilish',time: '8 daq', diff: 'Hard'   },
-            { name: 'Ijtimoiy vaziyatlar',time: '7 daq', diff: 'Medium' },
-          ],
         },
       ],
     },
@@ -905,42 +863,6 @@ const translations = {
             'Ichki elektron tibbiy kartalar bilan integratsiya qilish uchun ma\'lumotlarni eksport qilish',
             'Shaxsiy joriy etish menejeri va texnik yordam',
             'Tibbiyot xodimlarini platformada ishlashga o\'rgatish',
-          ],
-        },
-      ],
-        },
-        {
-          name:  'Premium',
-          price: '$30',
-          per:   '/ oy',
-          desc:  'Bemor uchun kompleks individual reabilitatsiya dasturi va yaqinlarini qo\'llab-quvvatlash.',
-          cta:   '14 kunlik sinov muddati',
-          ctaStyle: 'primary',
-          popular: true,
-          features: [
-            'Platformaning barcha 4 ta moduliga to\'liq kirish (shu jumladan kognitiv)',
-            'Yaqinlar uchun yirik motorika bo\'yicha video darslar kutubxonasiga kirish',
-            'Nutq va motor nuqsonlarining batafsil avtomatik diagnostikasi',
-            'Vazifa murakkabligini bemorning holatiga dinamik moslashtirish',
-            'Davolovchi shifokorga ko\'rsatish uchun tuzilgan hisobotlarni eksport qilish',
-            'Ustuvor texnik yordam',
-            'Afaziya shaklini aniqlash bilan nutq buzilishlarining batafsil ekspert diagnostikasi',
-          ],
-        },
-        {
-          name:  'ENTERPRISE',
-          price: 'So\'rov bo\'yicha',
-          per:   '',
-          desc:  'Platformani tibbiyot markazlari amaliyotiga va mutaxassislar faoliyatiga integratsiya qilish.',
-          cta:   'Savdo bo\'limi bilan bog\'lanish',
-          ctaStyle: 'outline',
-          features: [
-            'Premium tarifining barcha imkoniyatlari',
-            'Bir vaqtning o\'zida bir nechta bemorlarni olib borish va monitoring qilish uchun shifokor paneli',
-            'Reabilitolog tomonidan mashg\'ulot protokollarini qo\'lda o\'zgartirish imkoniyati',
-            'Ichki tibbiy kartalar bilan integratsiya qilish uchun ma\'lumotlarni eksport qilish',
-            'Shaxsiy joriy etish menejeri va texnik yordam',
-            'Tibbiyot xodimlarini platforma bilan ishlashga o\'rgatish',
           ],
         },
       ],
