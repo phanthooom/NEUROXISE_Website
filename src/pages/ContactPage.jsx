@@ -193,7 +193,7 @@ export default function ContactPage() {
                     </div>
                     <div className="ct-field">
                       <label className="ct-label" style={{ color: c.text2 }}>{f.topic}</label>
-                      <select className="ct-inp" style={inp} value={form.topic} onChange={set('topic')}>
+                      <select className="ct-inp ct-select" style={inp} value={form.topic} onChange={set('topic')}>
                         {f.topicOptions.map(o => <option key={o} value={o}>{o}</option>)}
                       </select>
                     </div>
@@ -226,6 +226,7 @@ export default function ContactPage() {
         .ct-label{font-size:13px;font-weight:600}
         .ct-inp{padding:11px 14px;border-radius:11px;border:1px solid;font-size:14px;outline:none;font-family:inherit;transition:border-color .2s}
         .ct-inp:focus{border-color:#3D52F5}
+        .ct-select{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23888%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E");background-repeat:no-repeat;background-position:right 16px center;background-size:16px;padding-right:40px;cursor:pointer}
         .ct-textarea{resize:vertical;min-height:120px}
         .ct-submit{background:#3D52F5;color:#fff;border:none;padding:13px;border-radius:12px;font-weight:700;font-size:15px;cursor:pointer;transition:background .2s}
         .ct-submit:hover{background:#2B40D4}
