@@ -220,7 +220,7 @@ export default function ContactPage() {
         .ct-channel{border:1px solid;border-radius:18px;padding:18px 20px;display:flex;align-items:flex-start;gap:14px;text-decoration:none;animation:fadeUp .6s ease both;transition:transform .2s ease}
         .ct-channel:hover{transform:translateY(-3px)}
         .ct-notice{border:1px solid;border-radius:14px;padding:14px 16px;display:flex;gap:10px;align-items:flex-start}
-        .ct-form-wrap{border:1px solid;border-radius:24px;padding:30px;animation:fadeUp .6s ease both}
+        .ct-form-wrap{border:1px solid;border-radius:24px;padding:30px;min-height:450px;display:flex;flex-direction:column;justify-content:center;animation:fadeUp .6s ease both}
         .ct-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
         .ct-field{display:flex;flex-direction:column;gap:6px}
         .ct-label{font-size:13px;font-weight:600}
@@ -229,7 +229,7 @@ export default function ContactPage() {
         .ct-textarea{resize:vertical;min-height:120px}
         .ct-submit{background:#3D52F5;color:#fff;border:none;padding:13px;border-radius:12px;font-weight:700;font-size:15px;cursor:pointer;transition:background .2s}
         .ct-submit:hover{background:#2B40D4}
-        .ct-sent{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:260px;text-align:center;animation:fadeUp .5s ease both}
+        .ct-sent{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;animation:fadeUp .5s ease both}
         @keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
         @media(max-width:960px){.ct-layout{grid-template-columns:1fr}.ct-row{grid-template-columns:1fr}}
       `}</style>

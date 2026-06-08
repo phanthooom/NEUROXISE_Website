@@ -262,7 +262,7 @@ export default function BlogPage() {
               <p style={{ color: c.text2, fontSize: 15, lineHeight: 1.6 }}>{t.newsletterSub}</p>
             </div>
             {sent ? (
-              <div style={{ flex: 1, minWidth: 280, color: '#34C48C', fontWeight: 600, fontSize: 16 }}>
+              <div style={{ flex: 1, minWidth: 280, color: '#34C48C', fontWeight: 600, fontSize: 16, animation: 'fadeUp .5s ease both', minHeight: 46, display: 'flex', alignItems: 'center' }}>
                 ✅ Спасибо за подписку!
               </div>
             ) : (

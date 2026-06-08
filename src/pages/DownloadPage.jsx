@@ -204,8 +204,8 @@ export default function DownloadPage() {
         .dl2-hero{border-radius:28px;padding:44px;display:grid;grid-template-columns:1fr 340px;gap:36px;align-items:center;animation:fadeUp .55s ease both;position:relative;overflow:hidden}
         .dl2-hero::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(255,255,255,.08) 0%,transparent 70%);pointer-events:none}
         .dl2-hero-text{position:relative;z-index:1}
-        .dl2-form-wrap{border:1px solid;border-radius:22px;padding:28px;animation:fadeUp .6s ease both}
-        .dl2-sent{text-align:center;padding:16px 0}
+        .dl2-form-wrap{border:1px solid;border-radius:22px;padding:28px;min-height:220px;display:flex;flex-direction:column;justify-content:center;animation:fadeUp .6s ease both}
+        .dl2-sent{text-align:center;padding:0;animation:fadeUp .5s ease both}
         .dl2-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:20px}
         .dl2-card{border:1px solid;border-radius:20px;padding:22px;animation:fadeUp .65s ease both;transition:transform .2s ease}
         .dl2-card:hover{transform:translateY(-4px)}
